@@ -6,15 +6,9 @@ const Navbar = () => {
       <div class="logo">
         <h1>Band List</h1>
       </div>
-      <Link href="/">
-        <a>Home</a>
-      </Link>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-      <Link href="/bands">
-        <a>Band Listings</a>
-      </Link>
+      <Link href="/">Home</Link>
+      <Link href="/about">About</Link>
+      <Link href="/bands">Band Listings</Link>
     </nav>
   );
 };
