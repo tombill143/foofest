@@ -16,7 +16,7 @@ export default function Home() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
           porttitor mi vitae nisl suscipit malesuada. Fusce congue aliquet risus
           eu malesuada. Sed ultricies, risus in commodo vestibulum, nulla lectus
-          bibendum elit, in hendrerit est odio et purus.
+          bibendum elit, in hendrerit est odio et a purus.
         </p>
         <p>
           Aliquam non diam eu sapien iaculis bibendum. Proin commodo elit eget
