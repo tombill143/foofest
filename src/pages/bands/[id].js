@@ -44,7 +44,7 @@ const Bio = ({ band }) => {
       )}
       <p>{band.genre}</p>
       <p>{band.logoCredits}</p>
-      <p>{band.logo}</p>
+      {band.logo && <img src={band.logo} alt={`${band.name} logo`} />}
       <p>{band.bio}</p>
     </div>
   );
