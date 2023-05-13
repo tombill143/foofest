@@ -44,3 +44,7 @@ footer {
   color: #a6c196;
   text-decoration: underline;
 }
+
+ul {
+  list-style: none;
+}
