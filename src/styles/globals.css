@@ -48,3 +48,7 @@ footer {
 .logocolor{
   color: white;
 }
+
+ul {
+  list-style: none;
+}

@@ -14,7 +14,7 @@ export const getStaticProps = async () => {
 const Bands = ({ bands }) => {
   return (
     <div>
-      <h1>All Bands</h1>
+      <h1>Lineup</h1>
       {bands.map((band) => (
         <Link
           href={"/bands/" + band.slug}
