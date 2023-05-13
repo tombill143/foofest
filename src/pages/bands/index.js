@@ -16,11 +16,13 @@ const Bands = ({ bands }) => {
     <div>
       <h1>All Bands</h1>
       {bands.map((band) => (
-        <div key={band.id}>
-          <a className={styles.single}>
-            <h3>{band.name}</h3>
-          </a>
-        </div>
+        <Link
+          href={"/bands/" + band.slug}
+          className={styles.single}
+          key={band.slug}
+        >
+          <h3>{band.name}</h3>
+        </Link>
       ))}
     </div>
   );
