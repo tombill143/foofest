@@ -16,3 +16,8 @@
   color: white;
   text-align: center;
 }
+
+.logocolor{
+  filter: invert(1);
+  
+}
