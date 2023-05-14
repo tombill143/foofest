@@ -25,8 +25,14 @@ const BandsSchedule = ({ bands }) => {
         <h3>Monday</h3>
 
         {bands.Midgard && bands.Midgard.mon && bands.Midgard.mon.map((band) => (
-         <div key={`${band.act}-${band.start}-${band.end}`}>
-            {/* dorsnt change anything, still the wrong data at the wrng time stamps */}
+         <div key={band.act}>
+
+{/* to change the cosnole error, chat gpt gives this fix:
+
+<div key={`${band.act}-${band.start}-${band.end}-${band.act === "break" ? "break" : "" }`} >
+as the issue is thay the 'act's 'break' cant have individual keys, as their 'act' is called the same. If it becomes an issue, try this
+            */}
+
             <p>Start: {band.start}</p>
             <p>End: {band.end}</p>
             <p>Act: {band.act}</p>
