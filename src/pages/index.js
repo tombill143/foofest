@@ -13,16 +13,8 @@ export default function Home() {
       </Head>
       <div>
         <h1 className={styles.title}>Homepage</h1>
-        <p className={styles.text}>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia nobis,
-          asperiores quis, corrupti aut unde officia nihil adipisci nisi dolore
-          autem excepturi quisquam rem suscipit ratione a cum qui tempore?
-        </p>
-        <p className={styles.text}>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia nobis,
-          asperiores quis, corrupti aut unde officia nihil adipisci nisi dolore
-          autem excepturi quisquam rem suscipit ratione a cum qui tempore?
-        </p>
+        <p className={styles.text}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia nobis, asperiores quis, corrupti aut unde officia nihil adipisci nisi dolore autem excepturi quisquam rem suscipit ratione a cum qui tempore?</p>
+        <p className={styles.text}>Lorem, ipsum dolor sit amet consjnjnjnectetur adipisicing elit. Quia nobis, asperiores quis, corrupti aut unde officia nihil adipisci nisi dolore autem excepturi quisquam rem suscipit ratione a cum qui tempore?</p>
         <Link className={styles.btn} href="/bands">
           Band Listings
         </Link>
