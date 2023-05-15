@@ -45,6 +45,10 @@ footer {
   text-decoration: underline;
 }
 
+.logocolor{
+  color: white;
+}
+
 ul {
   list-style: none;
 }
