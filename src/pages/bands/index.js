@@ -1,5 +1,7 @@
 import Link from "next/link";
 import styles from "../../styles/Bands.module.css";
+
+
 export const getStaticProps = async () => {
   const res = await fetch("https://positive-pushy-oatmeal.glitch.me/bands");
   const data = await res.json();
