@@ -26,6 +26,10 @@ export default function Home() {
         <Link className={styles.btn} href="/bands">
           Band Listings
         </Link>
+
+        <Link className={styles.btn} href="/booking">
+          Book Tickets
+        </Link>
       </div>
     </>
   );
