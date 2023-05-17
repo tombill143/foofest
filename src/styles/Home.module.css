@@ -66,7 +66,7 @@
   color: rgba(225, 225, 225, 0.5);
 }
 
-.btn{
+.home_hero .btn{
   margin: 0 0 12vw 0;
   padding: 1.5vw;
   font-size: 2vw;
@@ -83,4 +83,14 @@
   background-color: #677B5B ;
   /* maybe something cooler than this lmao, like a 'hover' effect */
 
+}
+
+nav .btn{
+  /* has to be styled in here and not global for some reason */
+  background-color: var(--white);
+  padding: 5px;
+  width: 80px;
+  margin: 0;
+  border-radius: 30px;
+  color: var(--black);
 }

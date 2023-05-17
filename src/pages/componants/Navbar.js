@@ -5,13 +5,19 @@ import styles from "/src/styles/Home.module.css";
 const Navbar = () => {
   return (
     <nav>
-      <div className="logo">
+      <div class="logo">
+        <Link href="/">
         <Image src="/newlogo.svg" className={styles.logocolor} alt="picture" width={128} height={100} />
         {/* <Image src="/logo.png" alt="picture" width={128} height={100} /> */}
+        </Link>
       </div>
-      <Link href="/">Home</Link>
-      <Link href="/about">About</Link>
-      <Link href="/bands">Band Listings</Link>
+      <ul>
+      <Link href="/">HOME</Link>
+      <Link href="/bands">LINEUP</Link>
+      <Link href="/schedule">SCHEDULE</Link>
+      <Link href="/about">ABOUT</Link>
+      <Link className={styles.btn} href="/booking"> BOOK</Link>
+      </ul>
     </nav>
   );
 };
