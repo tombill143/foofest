@@ -14,7 +14,7 @@ const Navbar = () => {
       <ul>
       <Link href="/">HOME</Link>
       <Link href="/bands">LINEUP</Link>
-      <Link href="/schedule">SCHEDULE</Link>
+      <Link href="/bands/schedule">SCHEDULE</Link>
       <Link href="/about">ABOUT</Link>
       <Link className={styles.btn} href="/booking"> BOOK</Link>
       </ul>
