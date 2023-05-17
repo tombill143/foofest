@@ -25,3 +25,14 @@
 .dashboard_items:hover{
     border-color: greenyellow;
 }
+
+.btn {
+    display: block;
+    width: 150px;
+    padding: 8px 0;
+    margin: 20px auto;
+    background: #a6c196;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+  }

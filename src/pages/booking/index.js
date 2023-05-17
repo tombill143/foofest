@@ -22,22 +22,30 @@ const availableSpots = ({spots}) => {
   return (
     <div className={styles.container_dashboard}>
       <h1>available spots</h1>
+      <p>Choose your preferred camp site and number of tickets below. The tickets will be reserved for 10 minutes after you are directed to the next site from the button below. MAKR BUTTON BELOW THE CHOICES TO GO TO BOOKING. SO NOT ONLY CLICKING ON THE CAMP AREAS i think that's best</p>
 
 
       <div className={styles.item_container}>
-      {spots.map((spot) => (
+
+        {spots.map((spot) => (
         
           <div className={styles.dashboard_items}> 
-          <Link href={"/booking/" + spot.area} className={styles.single} key={spot.area}>
-          <h2>{spot.area}</h2>
-          <h3> {spot.available} out of {spot.spots} spots available</h3>
-         
-         {/* do some 'if spot.abailable = 0 then 'sold out!' later. for muspelheim */}
-          </Link>
-      </div>
-      ))}
+            <Link href={"/booking/" + spot.area} className={styles.single} key={spot.area}>
+            <h2>{spot.area}</h2>
+            <h3> {spot.available} out of {spot.spots} spots available</h3>
+          
+            {/* do some 'if spot.abailable = 0 then 'sold out!' later. for muspelheim */}
+            </Link>
+
+            
+
+           </div>
+        ))}
 
       </div>
+      <Link className={styles.btn} href="/selections">
+          Go to Reservation
+        </Link>
     </div>
   )
 
