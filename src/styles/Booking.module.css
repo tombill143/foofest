@@ -126,7 +126,7 @@
 }
 
 .h2buyersInfo {
-  margin-left: 5.2em;
+  margin-left: 6em;
 }
 
 .formContainer {
@@ -137,7 +137,7 @@
 
 .formContainer label {
   margin-bottom: 1rem;
-  margin-left: 8em;
+  margin-left: 9em;
 }
 
 .formContainer input {
@@ -152,4 +152,41 @@
 
 .zipcodeLabel {
   width: 130px; /* Adjust the width as needed */
+}
+
+.verticalLine {
+  border-left: 1px solid rgb(255, 255, 255); /* Adjust the color and thickness as desired */
+  position: absolute;
+  height: 60%;
+  margin-top: 6em;
+
+  left: 50%; /* Adjust the left position if needed */
+  /* z-index: -1 */ /* Ensure the line is behind the content */
+}
+
+.h1thankyou {
+  margin-top: 2em;
+  text-align: center;
+}
+
+.hornsimage {
+  margin-top: 1em;
+  margin-left: 38%;
+}
+
+.thankyoubutton {
+  display: inline-block;
+  margin-left: 40em;
+  margin-top: 3em;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
