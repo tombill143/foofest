@@ -8,24 +8,38 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Foofest | Home</title>
+        <title>Foofestival | Home</title>
         <meta name="keywords" content="foofest" />
       </Head>
       <div>
-        <h1 className={styles.title}>Homepage</h1>
-        <p className={styles.text}>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia nobis,
-          asperiores quis, corrupti aut unde officia nihil adipisci nisi dolore
-          autem excepturi quisquam rem suscipit ratione a cum qui tempore?
-        </p>
-        <p className={styles.text}>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia nobis,
-          asperiores quis, corrupti aut unde officia nihil adipisci nisi dolore
-          autem excepturi quisquam rem suscipit ratione a cum qui tempore?
-        </p>
-        <Link className={styles.btn} href="/bands">
+        <section className={styles.home_hero}>
+          {/* <img src="foofesthero.png"></img> */}
+
+          <h3>XX DAYS IN JUNE</h3>
+          <h1 className={styles.title}>THE ROCK FESTIVAL <br></br> DEEP IN THE FOREST</h1>
+        
+      
+
+        {/* <Link className={styles.btn} href="/bands">
           Band Listings
+        </Link> */}
+
+        <Link className={styles.btn} href="/booking">
+          BOOK YOUR TICKETS NOW
         </Link>
+        </section>
+
+
+        <section className={styles.home_program}>
+         <p className={styles.text}>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia nobis,
+          asperiores quis, corrupti aut unde officia nihil adipisci nisi dolore
+          autem excepturi quisquam rem suscipit ratione a cum qui tempore?
+        </p>
+
+        </section>
+
+       
       </div>
     </>
   );

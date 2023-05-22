@@ -1,32 +1,61 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap');
+
+:root {
+  --grey: #4A4949;
+  --white: #ffffff;
+  --green: #A6C196;
+  --black: #000000;
+}
 
 body {
-  background: #4a4949;
+  background: var(--grey);
   color: #ffffff;
-  font-family: "Nunito";
+  font-family: "Open Sans";
 }
+
 a {
   color: #ffffff;
   text-decoration: none;
 }
 .content {
-  max-width: 960px;
+  /* max-width: 960px; */
+  /* took this off as it was messing witht the nav and hero! */
   margin: 0 auto;
 }
+
+section{
+  max-width: 960px;
+}
+
 nav {
-  margin: 10px auto 80px;
-  padding: 10px 0;
+  padding: 10px 40px 10px 40px;
+
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  border-bottom: 1px solid #ddd;
+  justify-content: space-between;
+  align-items: center;
+  /* border-bottom: 1px solid #ddd; */
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
 }
+
 nav a {
-  margin-left: 12px;
+  margin-right: 30px;
+  font-weight: 600;
+  
 }
-nav .logo {
-  margin-right: auto;
+/* nav .logo {
+  
+ 
+} */
+
+nav ul{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
+
+
 footer {
   display: block;
   text-align: center;
@@ -45,6 +74,17 @@ footer {
   text-decoration: underline;
 }
 
+.logocolor{
+  color: white;
+}
+
 ul {
   list-style: none;
 }
+
+.btn{
+  border-radius: 35px;
+  cursor: pointer;
+}
+
+
