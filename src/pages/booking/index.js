@@ -21,7 +21,7 @@ const availableSpots = ({spots}) => {
 
   return (
     <div className={styles.container_dashboard}>
-      <h1>available spots</h1>
+      <h1>Available spots</h1>
       <p>Choose your preferred camp site and number of tickets below. The tickets will be reserved for 10 minutes after you are directed to the next site from the button below. MAKR BUTTON BELOW THE CHOICES TO GO TO BOOKING. SO NOT ONLY CLICKING ON THE CAMP AREAS i think that's best</p>
 
 
