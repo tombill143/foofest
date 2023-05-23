@@ -34,7 +34,8 @@ const BuyersInfo = () => {
               src="/selectionimg.JPG"
               alt="Description of the image"
               className={styles.image}
-            />
+             />
+              <Timer seconds={100} />
           </div>
         </section>
         <section className={styles.home_hero}>
@@ -42,7 +43,7 @@ const BuyersInfo = () => {
             <div className={styles.checkboxContainer}>
               {/* Existing code for checkboxes and other elements */}
               <h2 className={styles.h2buyersInfo}>Buyers Info</h2>
-              <Timer seconds={100} />
+            
 
               <form onSubmit={handleSubmit} className={styles.formContainer}>
                 <label>
