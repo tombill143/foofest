@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from 'react';
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
 
@@ -43,7 +43,7 @@ const availableSpots = ({spots}) => {
         ))}
 
       </div>
-      <Link className={styles.btn} href="/selections">
+      <Link className={styles.btn} href="/selection">
           Go to Reservation
         </Link>
     </div>
