@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap");
 
 :root {
-  --grey: #4A4949;
+  --grey: #4a4949;
   --white: #ffffff;
-  --green: #A6C196;
+  --green: #a6c196;
   --black: #000000;
 }
 
@@ -24,7 +24,7 @@ a {
   margin: 0 auto;
 }
 
-section{
+section {
   max-width: 960px;
 }
 
@@ -41,20 +41,18 @@ nav {
 nav a {
   margin-right: 30px;
   font-weight: 600;
-  
 }
 /* nav .logo {
   
  
 } */
 
-nav ul{
+nav ul {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-
 
 footer {
   display: block;
@@ -74,7 +72,7 @@ footer {
   text-decoration: underline;
 }
 
-.logocolor{
+.logocolor {
   color: white;
 }
 
@@ -82,9 +80,15 @@ ul {
   list-style: none;
 }
 
-.btn{
+.btn {
   border-radius: 35px;
   cursor: pointer;
 }
 
+label {
+  margin-right: 2em;
+}
 
+select {
+  margin-bottom: 3em;
+}
