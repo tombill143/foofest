@@ -1,6 +1,5 @@
 
-// import "./styles.css";
-
+import styles from "src/styles/Timer.module.css";
 import { useEffect, useState } from "react";
 
 const useCountDown = (start) => {
@@ -8,6 +7,7 @@ const useCountDown = (start) => {
   useEffect(() => {
     if (counter === 0) {
       return;
+      // guess we're adding some uuuh a popup screen saying time is up 
     }
     const timer = setTimeout(() => {
       setCounter(counter - 1);
@@ -19,7 +19,16 @@ const useCountDown = (start) => {
 
 function Timer({ seconds }) {
   const timeLeft = useCountDown(seconds);
-  return <div>{timeLeft}s</div>;
+  return (
+
+    <div className={styles.timercontainer}>
+       <div className={styles.timertext}>
+         <p>Reservation ends in</p>
+         <div className={styles.timer}>{timeLeft}s</div>
+       </div>
+    </div>
+  ) 
+
 }
 
 export default Timer;

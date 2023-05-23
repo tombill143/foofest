@@ -44,7 +44,12 @@
 }
 
 .leftColumn {
-  margin-bottom: 14em;
+  margin-bottom: 6em;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .rightColumn {
