@@ -35,7 +35,7 @@ const BuyersInfo = () => {
               alt="Description of the image"
               className={styles.image}
              />
-              <Timer seconds={100} />
+              <Timer seconds={10} />
           </div>
         </section>
         <section className={styles.home_hero}>

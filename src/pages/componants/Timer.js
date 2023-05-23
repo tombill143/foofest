@@ -1,12 +1,17 @@
 
 import styles from "src/styles/Timer.module.css";
 import { useEffect, useState } from "react";
+import { Thasadith } from "next/font/google";
+import { exportPathMap } from "../../../next.config";
 
 const useCountDown = (start) => {
   const [counter, setCounter] = useState(start);
   useEffect(() => {
     if (counter === 0) {
+
       return;
+
+
       // guess we're adding some uuuh a popup screen saying time is up 
     }
     const timer = setTimeout(() => {
@@ -32,14 +37,6 @@ function Timer({ seconds }) {
 }
 
 export default Timer;
-
-
-
-
-
-
-
-
 
 
 
