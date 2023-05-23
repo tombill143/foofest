@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
 import { useState } from "react";
+import Timer from "../componants/Timer";
 
 const BuyersInfo = () => {
   const [formData, setFormData] = useState({
@@ -41,6 +42,7 @@ const BuyersInfo = () => {
             <div className={styles.checkboxContainer}>
               {/* Existing code for checkboxes and other elements */}
               <h2 className={styles.h2buyersInfo}>Buyers Info</h2>
+              <Timer seconds={100} />
 
               <form onSubmit={handleSubmit} className={styles.formContainer}>
                 <label>
@@ -107,3 +109,9 @@ const BuyersInfo = () => {
 };
 
 export default BuyersInfo;
+
+
+
+
+
+
