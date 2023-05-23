@@ -45,3 +45,10 @@
 .all_container h1{
   margin: 5rem;
 }
+
+.band_members{
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 0;
+}
