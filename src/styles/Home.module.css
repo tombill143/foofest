@@ -5,6 +5,12 @@
 }
 .text {
   color: #ffff;
+  text-align: center;
+  margin-left: 30%;
+  width: 100%;
+  font-weight: 700;
+  font-style: italic;
+  font-size: large;
 }
 .btn {
   display: block;
@@ -87,4 +93,51 @@ nav .btn {
   margin: 0;
   border-radius: 30px;
   color: var(--black);
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 3em;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button {
+  margin: 0 10px;
+  padding: 40px 50px;
+  background-color: #4a4949;
+  border: 1px solid white;
+  border-radius: 0px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.button:hover {
+  margin: 0 10px;
+  padding: 40px 50px;
+  background-color: #ffffff;
+  border: 1px solid white;
+  border-radius: 0px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.button:hover .icon {
+  /* Icon styles when button is hovered */
+  /* Update with your desired styles */
+  fill: #4a4949; /* Change the fill color */
+}
+
+.icon {
+  fill: #ffffff; /* Change the fill color */
+  width: 24px; /* Set the width */
+  height: 24px; /* Set the height */
+  /* Add other styles as needed */
+}
+
+.icon:hover {
+  fill: #4a4949; /* Change the fill color */
+  width: 24px; /* Set the width */
+  height: 24px; /* Set the height */
+  /* Add other styles as needed */
 }

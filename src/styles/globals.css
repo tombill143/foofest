@@ -18,6 +18,10 @@ a {
   color: #ffffff;
   text-decoration: none;
 }
+
+a:hover {
+  color: #a6c196;
+}
 .content {
   /* max-width: 960px; */
   /* took this off as it was messing witht the nav and hero! */
