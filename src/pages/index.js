@@ -3,6 +3,9 @@ import Navbar from "./componants/Navbar";
 import styles from "../styles/Home.module.css";
 import Footer from "./componants/Footer";
 import Link from "next/link";
+import React, { useRef } from 'react';
+
+
 
 export default function Home() {
   return (
@@ -11,7 +14,9 @@ export default function Home() {
         <title>Foofestival | Home</title>
         <meta name="keywords" content="foofest" />
       </Head>
+    
       <div>
+     
         <section className={styles.home_hero}>
           {/* <img src="foofesthero.png"></img> */}
 
