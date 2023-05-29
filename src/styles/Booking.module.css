@@ -201,6 +201,10 @@
   filter: drop-shadow(30px 10px 4px #272727);
 }
 
+.single {
+  cursor: pointer;
+}
+
 .single h2 {
   /* Add or modify styles for h2 elements */
   /* For example: */
@@ -216,4 +220,9 @@
   font-size: 16px;
   color: #888888;
   /* Add any other desired styles */
+}
+
+.unavailable {
+  opacity: 0.5; /* Example: reduce the opacity of unavailable campsite */
+  /* Add any additional styles to indicate unavailability */
 }

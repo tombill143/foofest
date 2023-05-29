@@ -29,9 +29,13 @@ const Booking = ({ spots }) => {
         <div className={styles.item_container}>
           {spots.map((spot) => (
             <div
-              className={styles.dashboard_items}
+              className={`${styles.dashboard_items} ${
+                spot.available === 0 ? styles.unavailable : ""
+              }`}
               key={spot.area}
-              onClick={() => handleCampsiteSelection(spot.area)}
+              onClick={() =>
+                spot.available !== 0 && handleCampsiteSelection(spot.area)
+              }
             >
               <div className={styles.single}>
                 <h2>{spot.area}</h2>
