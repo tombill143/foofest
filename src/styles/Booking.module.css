@@ -195,3 +195,8 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
+.girlimage {
+  margin: auto 0;
+  filter: drop-shadow(30px 10px 4px #272727);
+}
