@@ -1,15 +1,20 @@
 import React from "react";
 import styles from "../../styles/Booking.module.css";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import Head from "next/head";
 
 const Booking = ({ spots }) => {
+  const router = useRouter();
   console.log("spots:", spots);
+
+  const handleCampsiteSelection = (area) => {
+    router.push(`/booking/selection?campsite=${area}`);
+  };
 
   return (
     <>
       <Head>
-        <title>Select Campsite</title>
+        <title>Select Campsites</title>
         <meta name="keywords" content="foofest" />
       </Head>
       <div className={styles.container_dashboard}>
@@ -23,21 +28,26 @@ const Booking = ({ spots }) => {
 
         <div className={styles.item_container}>
           {spots.map((spot) => (
-            <div className={styles.dashboard_items} key={spot.area}>
-              <Link href={`/booking/${spot.area}`} passHref>
-                <div className={styles.single}>
-                  <h2>{spot.area}</h2>
-                  <h3>
-                    {spot.available} out of {spot.spots} spots available
-                  </h3>
-                </div>
-              </Link>
+            <div
+              className={styles.dashboard_items}
+              key={spot.area}
+              onClick={() => handleCampsiteSelection(spot.area)}
+            >
+              <div className={styles.single}>
+                <h2>{spot.area}</h2>
+                <h3>
+                  {spot.available} out of {spot.spots} spots available
+                </h3>
+              </div>
             </div>
           ))}
         </div>
-        <Link href="/booking/selection" className={styles.btn}>
+        <div
+          className={styles.btn}
+          onClick={() => router.push("/booking/selection")}
+        >
           Skip this page
-        </Link>
+        </div>
       </div>
     </>
   );

@@ -200,3 +200,20 @@
   margin: auto 0;
   filter: drop-shadow(30px 10px 4px #272727);
 }
+
+.single h2 {
+  /* Add or modify styles for h2 elements */
+  /* For example: */
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  /* Add any other desired styles */
+}
+
+.single h3 {
+  /* Add or modify styles for h3 elements */
+  /* For example: */
+  font-size: 16px;
+  color: #888888;
+  /* Add any other desired styles */
+}
