@@ -6,21 +6,25 @@ import Timer from "../componants/Timer.js"
 
 const Selection = () => {
   const router = useRouter();
-  const {numTickets, ticketType } = router.query;
+  const {numTickets} = router.query; //delete this router.query?
 
   const [selectedTicketTypes, setSelectedTicketTypes] = useState([]);
+  const [selectedTicketNumber, setSelectedTicketNumber] = useState([]);
 //empty array with usestate
 
+
+//is handleMNext something we need? when we do the params at the bottom of the code anyways
   const handleNext = () => {
     // Replace "destination-page" with the actual page where you want to navigate to
+    // const destinationPage = `/booking/buyers_info`??;
     const destinationPage = `/booking/destination-page`;
-    // const destinationPage = `/booking/buyers_info`;
 
     // Prepare the query parameters to pass to the destination page
     const queryParams = {
       // ticketType: ticketType || "",
+      // numTickets: numTickets || "",
       ticketType: selectedTicketTypes,
-      numTickets: numTickets || "",
+      numTickets: selectedTicketNumber,
     };
 
     // Navigate to the destination page with the query parameters
@@ -50,6 +54,22 @@ const Selection = () => {
       ]);
     }
   };
+  
+//the same but for the ticket number. dunno if we could smack those two functuons together
+  const handleTicketNumberChange = (e) => {
+    const numTickets = e.target.value;
+    const isSelected = selectedTicketNumber.includes(numTickets);
+    if (isSelected) {
+      setSelectedTicketNumber((prevSelectedTicketNumber) =>
+        prevSelectedTicketNumber.filter((type) => type !== numTickets)
+      );
+    } else {
+      setSelectedTicketNumber((prevSelectedTicketNumber) => [
+        ...prevSelectedTicketNumber,
+        numTickets,
+      ]);
+    }
+  };
 
   
 
@@ -75,7 +95,7 @@ const Selection = () => {
         <section className={styles.home_hero}>
 
           <div className={styles.rightColumn}>
-            <h1>Choose Ticket Type</h1>
+            <h1>Ticket Type & Optionals</h1>
             <div className={styles.checkboxContainer}>
               <label>
                 <input type="radio" name="regular" value="regular" onChange={handleTicketTypeChange} />
@@ -86,6 +106,23 @@ const Selection = () => {
                 <input type="radio" name="vip" value="vip" onChange={handleTicketTypeChange}/>
                 VIP Ticket - 1299;
               </label>
+
+              <h2 className={styles.choosingTent}>Ticket Amount</h2>
+              <hr className={styles.hrLine} />
+              <select onChange={handleTicketNumberChange} className={styles.dropdown}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+
+
               <h2 className={styles.choosingTent}>Choose Tents</h2>
               <hr className={styles.hrLine} />
               <select className={styles.dropdown}>
@@ -93,6 +130,8 @@ const Selection = () => {
                 <option value="tent2">Tent 2</option>
                 <option value="tent3">Tent 3</option>
               </select>
+
+
               <h2 className={styles.choosingTent}>Optionals</h2>
               <hr className={styles.hrLine} />
               <label>
@@ -119,7 +158,8 @@ const Selection = () => {
                 query: {
                   // ticketType: ticketType || "",
                   ticketType: selectedTicketTypes,
-                  numTickets: numTickets || "",
+                  numTickets: selectedTicketNumber,
+                  // numTickets: numTickets || "",
                 },
               });
             }}
