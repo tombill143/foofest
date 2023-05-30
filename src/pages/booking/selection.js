@@ -1,19 +1,25 @@
 import Head from "next/head";
-import React from "react";
+import React, {useState} from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
+import Timer from "../componants/Timer.js"
 
 const Selection = () => {
   const router = useRouter();
-  const { ticketType, numTickets } = router.query;
+  const {numTickets, ticketType } = router.query;
+
+  const [selectedTicketTypes, setSelectedTicketTypes] = useState([]);
+//empty array with usestate
 
   const handleNext = () => {
     // Replace "destination-page" with the actual page where you want to navigate to
     const destinationPage = `/booking/destination-page`;
+    // const destinationPage = `/booking/buyers_info`;
 
     // Prepare the query parameters to pass to the destination page
     const queryParams = {
-      ticketType: ticketType || "",
+      // ticketType: ticketType || "",
+      ticketType: selectedTicketTypes,
       numTickets: numTickets || "",
     };
 
@@ -23,6 +29,29 @@ const Selection = () => {
       query: queryParams,
     });
   };
+
+// _______________________________this constant all from chatgpt
+  const handleTicketTypeChange = (e) => {
+    //updating the selected ticket type based on which of the ticket checkbox is selected
+   //each checkbox will have a handletickettypechange as the onchange event handler
+    const ticketType = e.target.value;
+    const isSelected = selectedTicketTypes.includes(ticketType);
+
+    // Update selected ticket types based on checkbox selection
+    //similar to mmd-case buyerpage
+    if (isSelected) {
+      setSelectedTicketTypes((prevSelectedTicketTypes) =>
+        prevSelectedTicketTypes.filter((type) => type !== ticketType)
+      );
+    } else {
+      setSelectedTicketTypes((prevSelectedTicketTypes) => [
+        ...prevSelectedTicketTypes,
+        ticketType,
+      ]);
+    }
+  };
+
+  
 
   return (
     <>
@@ -34,23 +63,27 @@ const Selection = () => {
       <div className={styles.gridContainer}>
         <section className={styles.home_hero}>
           <div className={styles.leftColumn}>
+
             <img
               src="/selectionimg.JPG"
               alt="Description of the image"
               className={styles.image}
             />
+          <Timer seconds={10} />
           </div>
         </section>
         <section className={styles.home_hero}>
+
           <div className={styles.rightColumn}>
             <h1>Choose Ticket Type</h1>
             <div className={styles.checkboxContainer}>
               <label>
-                <input type="radio" name="ticket" value="regular" />
+                <input type="radio" name="regular" value="regular" onChange={handleTicketTypeChange} />
+                {/* <input type="radio" name="ticket" value="regular" /> */}
                 Regular Ticket - 799;
               </label>
               <label>
-                <input type="radio" name="ticket" value="vip" />
+                <input type="radio" name="vip" value="vip" onChange={handleTicketTypeChange}/>
                 VIP Ticket - 1299;
               </label>
               <h2 className={styles.choosingTent}>Choose Tents</h2>
@@ -71,18 +104,21 @@ const Selection = () => {
                 Meet & Greet
               </label>
               <label>
-                <input type="checkbox" name="vip" value="vip" />
+                <input type="checkbox" name="backstage" value="backstage" />
+                {/* <input type="checkbox" name="vip" value="vip" /> */}
                 Backstage passes
               </label>
             </div>
           </div>
           <button
-            className={styles.nextButton}
+            // className={styles.nextButton}
+            className={styles.btn}
             onClick={() => {
               router.push({
-                pathname: "/booking/selection",
+                pathname: "/booking/buyers_info",
                 query: {
-                  ticketType: ticketType || "",
+                  // ticketType: ticketType || "",
+                  ticketType: selectedTicketTypes,
                   numTickets: numTickets || "",
                 },
               });

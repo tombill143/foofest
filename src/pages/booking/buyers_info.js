@@ -1,12 +1,18 @@
 import React from "react";
+import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import Timer from "../componants/Timer";
 
 const BuyersInfo = () => {
+  const router = useRouter();
+  const { ticketType, numTickets } = router.query;
+  //as per selection.js
+
   const [formData, setFormData] = useState({
     firstName: "",
+    // do we need to do it like this?: const [name, setName] = useState("");
     lastName: "",
     email: "",
     address: "",
@@ -34,8 +40,8 @@ const BuyersInfo = () => {
               src="/selectionimg.JPG"
               alt="Description of the image"
               className={styles.image}
-            />
-            <Timer seconds={10} />
+             />
+              <Timer seconds={10} />
           </div>
         </section>
         <section className={styles.home_hero}>
@@ -43,6 +49,7 @@ const BuyersInfo = () => {
             <div className={styles.checkboxContainer}>
               {/* Existing code for checkboxes and other elements */}
               <h2 className={styles.h2buyersInfo}>Buyers Info</h2>
+            
 
               <form onSubmit={handleSubmit} className={styles.formContainer}>
                 <label>
@@ -52,6 +59,8 @@ const BuyersInfo = () => {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
+                // why not  onChange={(e) => setName(e.target.value)} ??
+
                     className={styles.formInput}
                   />
                 </label>
@@ -96,9 +105,17 @@ const BuyersInfo = () => {
                   />
                 </label>
 
-                <button type="submit" className={styles.nextButton}>
-                  Go To Payment
-                </button>
+                <button type="submit" className={styles.btn}
+                   onClick={() => {
+                   router.push({
+                   pathname: "/booking/payment",
+                   query: {
+                   ticketType: ticketType || "",
+                   numTickets: numTickets || "",
+                },
+              });
+            }}
+            >Go To Payment </button>
               </form>
             </div>
           </div>
@@ -109,3 +126,9 @@ const BuyersInfo = () => {
 };
 
 export default BuyersInfo;
+
+
+
+
+
+
