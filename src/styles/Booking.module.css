@@ -226,3 +226,9 @@
   opacity: 0.5; /* Example: reduce the opacity of unavailable campsite */
   /* Add any additional styles to indicate unavailability */
 }
+
+.columnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
