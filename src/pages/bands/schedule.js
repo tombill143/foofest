@@ -17,7 +17,7 @@ const BandsSchedule = ({ bands }) => {
 
   return (
     <div className={styles.all_container}>
-      <h1>Schedule</h1>
+      <h1>SCHEDULE</h1>
 
 <div className={styles.day_schedule}>
 <h2>MONDAY</h2>
