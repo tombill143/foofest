@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
@@ -24,6 +24,24 @@ const Selection = () => {
       query: queryParams,
     });
   };
+
+  const [isTentDisabled, setIsTentDisabled] = useState(true);
+  const [selectedNumTickets, setSelectedNumTickets] = useState("");
+
+  useEffect(() => {
+    const parsedNumTickets = parseInt(selectedNumTickets);
+    setIsTentDisabled(parsedNumTickets === 1 || parsedNumTickets === 2);
+  }, [selectedNumTickets]);
+
+  useEffect(() => {
+    const parsedNumTickets = parseInt(numTickets);
+    setIsTentDisabled(parsedNumTickets === 1 || parsedNumTickets === 2);
+    setSelectedNumTickets(numTickets || "");
+  }, [numTickets]);
+
+  useEffect(() => {
+    setIsTentDisabled(true); // Disable the 3-man tent dropdown by default
+  }, []); // Run only once on component mount
 
   return (
     <>
@@ -58,18 +76,23 @@ const Selection = () => {
 
               <h2 className={styles.choosingTent}>Number of Tickets</h2>
               <hr className={styles.hrLine} />
-              <select className={styles.dropdown}>
-                <option value="ticket1">1</option>
-                <option value="ticket2">2</option>
-                <option value="ticket3">3</option>
-                <option value="ticket4">4</option>
-                <option value="ticket5">5</option>
-                <option value="ticket6">6</option>
-                <option value="ticket7">7</option>
-                <option value="ticket8">8</option>
-                <option value="ticket9">9</option>
-                <option value="ticket10">10</option>
+              <select
+                className={styles.dropdown}
+                value={selectedNumTickets}
+                onChange={(e) => setSelectedNumTickets(e.target.value)}
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
               </select>
+
               <h2 className={styles.choosingTent}>Choose Tents</h2>
               <hr className={styles.hrLine} />
               <div className={styles.columnContainer}>
@@ -80,13 +103,13 @@ const Selection = () => {
                     <option value="tent1">1</option>
                     <option value="tent2">2</option>
                     <option value="tent3">3</option>
-                    <option value="tent4">3</option>
-                    <option value="tent5">3</option>
+                    <option value="tent4">4</option>
+                    <option value="tent5">5</option>
                   </select>
                 </div>
                 <div>
                   <h3 className={styles.choosingTent}>3 Man Tent</h3>
-                  <select className={styles.dropdown}>
+                  <select className={styles.dropdown} disabled={isTentDisabled}>
                     <option value="no-tent">0</option>
                     <option value="tent1">1</option>
                     <option value="tent2">2</option>
@@ -94,6 +117,7 @@ const Selection = () => {
                   </select>
                 </div>
               </div>
+
               <h2 className={styles.choosingTent}>Optionals</h2>
               <hr className={styles.hrLine} />
               <label>
