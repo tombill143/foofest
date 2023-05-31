@@ -1,14 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
-import { useState } from "react";
-import Timer from "../componants/Timer";
 import Head from "next/head";
-import { useRouter } from "next/router";
 
 const BuyersInfo = () => {
-  const router = useRouter(); // Initialize the router
-
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -19,15 +14,6 @@ const BuyersInfo = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform form submission or validation here
-    console.log(formData); // Example: Logging form data to the console
-
-    // Navigate to the payment page
-    router.push("/payment");
   };
 
   return (
@@ -47,16 +33,15 @@ const BuyersInfo = () => {
                 alt="Description of the image"
                 className={styles.image}
               />
-              <Timer seconds={10} />
+              {/* Timer component or other content */}
             </div>
           </section>
           <section className={styles.home_hero}>
             <div className={styles.rightColumn}>
               <div className={styles.checkboxContainer}>
-                {/* Existing code for checkboxes and other elements */}
                 <h2 className={styles.h2buyersInfo}>Buyers Info</h2>
 
-                <form onSubmit={handleSubmit} className={styles.formContainer}>
+                <form className={styles.formContainer}>
                   <label>
                     First Name:
                     <input
@@ -90,7 +75,7 @@ const BuyersInfo = () => {
                   <label>
                     Email:
                     <input
-                      type="email"
+                      type="text"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
@@ -107,8 +92,15 @@ const BuyersInfo = () => {
                       className={styles.formInput}
                     />
                   </label>
-                  <Link href="/booking/payment">
-                    <div className={styles.nextButton}>Go To Payment</div>
+                  <Link
+                    href={{
+                      pathname: "/booking/payment",
+                      query: formData,
+                    }}
+                  >
+                    <button type="submit" className={styles.nextButton}>
+                      Go To Payment
+                    </button>
                   </Link>
                 </form>
               </div>
