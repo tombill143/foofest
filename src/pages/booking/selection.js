@@ -2,13 +2,14 @@ import Head from "next/head";
 import React from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
+import Link from "next/link";
 
 const Selection = () => {
   const router = useRouter();
   const { ticketType, numTickets } = router.query;
 
   const handleNext = () => {
-    const destinationPage = `/booking/destination-page`;
+    const destinationPage = `/booking/buyers-info`;
 
     // Prepare the query parameters to pass to the destination page
     const queryParams = {
@@ -73,17 +74,21 @@ const Selection = () => {
                 <div>
                   <h3 className={styles.choosingTent}>2 Man Tent</h3>
                   <select className={styles.dropdown}>
-                    <option value="tent1">Tent 1</option>
-                    <option value="tent2">Tent 2</option>
-                    <option value="tent3">Tent 3</option>
+                    <option value="no-tent">0</option>
+                    <option value="tent1">1</option>
+                    <option value="tent2">2</option>
+                    <option value="tent3">3</option>
+                    <option value="tent4">3</option>
+                    <option value="tent5">3</option>
                   </select>
                 </div>
                 <div>
                   <h3 className={styles.choosingTent}>3 Man Tent</h3>
                   <select className={styles.dropdown}>
-                    <option value="tent1">Tent 1</option>
-                    <option value="tent2">Tent 2</option>
-                    <option value="tent3">Tent 3</option>
+                    <option value="no-tent">0</option>
+                    <option value="tent1">1</option>
+                    <option value="tent2">2</option>
+                    <option value="tent3">3</option>
                   </select>
                 </div>
               </div>
@@ -102,21 +107,10 @@ const Selection = () => {
                 Backstage passes
               </label>
             </div>
+            <button className={styles.nextButton} onClick={handleNext}>
+              Next
+            </button>
           </div>
-          <button
-            className={styles.nextButton}
-            onClick={() => {
-              router.push({
-                pathname: "/booking/selection",
-                query: {
-                  ticketType: ticketType || "",
-                  numTickets: numTickets || "",
-                },
-              });
-            }}
-          >
-            Next
-          </button>
         </section>
       </div>
     </>
