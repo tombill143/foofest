@@ -3,8 +3,12 @@ import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import Timer from "../componants/Timer";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 const BuyersInfo = () => {
+  const router = useRouter(); // Initialize the router
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -21,6 +25,9 @@ const BuyersInfo = () => {
     e.preventDefault();
     // Perform form submission or validation here
     console.log(formData); // Example: Logging form data to the console
+
+    // Navigate to the payment page
+    router.push("/payment");
   };
 
   return (
@@ -100,10 +107,9 @@ const BuyersInfo = () => {
                       className={styles.formInput}
                     />
                   </label>
-
-                  <button type="submit" className={styles.nextButton}>
-                    Go To Payment
-                  </button>
+                  <Link href="/booking/payment">
+                    <div className={styles.nextButton}>Go To Payment</div>
+                  </Link>
                 </form>
               </div>
             </div>

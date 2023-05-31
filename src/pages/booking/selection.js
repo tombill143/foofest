@@ -3,6 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
+import Timer from "../componants/Timer";
 
 const Selection = () => {
   const router = useRouter();
@@ -39,6 +40,7 @@ const Selection = () => {
               alt="Description of the image"
               className={styles.image}
             />
+            <Timer seconds={10} /> {/* Add the Timer component here */}
           </div>
         </section>
         <section className={styles.home_hero}>
@@ -107,9 +109,10 @@ const Selection = () => {
                 Backstage passes
               </label>
             </div>
-            <button className={styles.nextButton} onClick={handleNext}>
-              Next
-            </button>
+
+            <Link href="/booking/buyers_info">
+              <div className={styles.nextButton}>Next</div>
+            </Link>
           </div>
         </section>
       </div>
