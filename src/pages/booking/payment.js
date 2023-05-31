@@ -1,157 +1,112 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
 import styles from "../../styles/Booking.module.css";
+import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
 
-const BuyersInfo = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    address: "",
-    zipcode: "",
+const Payment = () => {
+  const [paymentData, setPaymentData] = useState({
+    cardNumber: "",
+    nameOnCard: "",
+    expirationDate: "",
+    cvv: "",
+    shippingMethod: "",
+    // other payment data fields
   });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform form submission or validation here
-    console.log(formData); // Example: Logging form data to the console
+    // Perform payment processing here using a payment processing service like Stripe
+    // You can use the paymentData state to access the entered payment details
+    // Display a confirmation message upon successful payment
+    console.log(paymentData); // Example: Logging payment data to the console
+  };
+
+  const handleChange = (e) => {
+    setPaymentData({
+      ...paymentData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
-    <div className={styles.bookingContainer}>
-      <div className={styles.verticalLine}></div>
-
-      <div className={styles.gridContainer}>
-        <section className={styles.home_hero}>
-          <div className={styles.rightColumn}>
-            <form onSubmit={handleSubmit} className={styles.formContainer}>
-              <label>
-                First Name:
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  className={styles.formInput}
-                />
-              </label>
-              <label>
-                Last Name:
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  className={styles.formInput}
-                />
-              </label>
-              <label>
-                Address:
-                <input
-                  type="text"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  className={styles.formInput}
-                />
-              </label>
-              <label>
-                Email:
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={styles.formInput}
-                />
-              </label>
-              <label className={styles.zipcodeLabel}>
-                Zipcode:
-                <input
-                  type="text"
-                  name="zipcode"
-                  value={formData.zipcode}
-                  onChange={handleChange}
-                  className={styles.formInput}
-                />
-              </label>
-            </form>
+    <>
+      <Head>
+        <title>Payment</title>
+        <meta name="keywords" content="foofest" />
+      </Head>
+      <div>
+        <h1 className={styles.paymentHeading}>Payment Details</h1>
+        <form onSubmit={handleSubmit} className={styles.paymentForm}>
+          <div className={styles.formGroup}>
+            <label htmlFor="cardNumber">Card Number</label>
+            <input
+              type="text"
+              id="cardNumber"
+              name="cardNumber"
+              value={paymentData.cardNumber}
+              onChange={handleChange}
+              required
+              className={`${styles.inputField} ${styles.centeredInput}`} // Add the centeredInput class here
+            />
           </div>
-        </section>
-        <section className={styles.home_hero}>
-          <div className={styles.rightColumn}>
-            <div className={styles.checkboxContainer}>
-              {/* Existing code for checkboxes and other elements */}
-              <h2 className={styles.h2buyersInfo}>Buyers Info</h2>
-
-              <form onSubmit={handleSubmit} className={styles.formContainer}>
-                <label>
-                  First Name:
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    className={styles.formInput}
-                  />
-                </label>
-                <label>
-                  Last Name:
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    className={styles.formInput}
-                  />
-                </label>
-                <label>
-                  Address:
-                  <input
-                    type="text"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleChange}
-                    className={styles.formInput}
-                  />
-                </label>
-                <label>
-                  Email:
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className={styles.formInput}
-                  />
-                </label>
-                <label className={styles.zipcodeLabel}>
-                  Zipcode:
-                  <input
-                    type="text"
-                    name="zipcode"
-                    value={formData.zipcode}
-                    onChange={handleChange}
-                    className={styles.formInput}
-                  />
-                </label>
-
-                <button type="submit" className={styles.nextButton}>
-                  Go To Payment
-                </button>
-              </form>
-            </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="nameOnCard">Name on Card</label>
+            <input
+              type="text"
+              id="nameOnCard"
+              name="nameOnCard"
+              value={paymentData.nameOnCard}
+              onChange={handleChange}
+              required
+              className={`${styles.inputField} ${styles.centeredInput}`} // Add the centeredInput class here
+            />
           </div>
-        </section>
+          <div className={styles.formGroup}>
+            <label htmlFor="expirationDate">Expiration Date</label>
+            <input
+              type="text"
+              id="expirationDate"
+              name="expirationDate"
+              value={paymentData.expirationDate}
+              onChange={handleChange}
+              required
+              className={styles.inputField}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="cvv">CVV</label>
+            <input
+              type="text"
+              id="cvv"
+              name="cvv"
+              value={paymentData.cvv}
+              onChange={handleChange}
+              required
+              className={styles.inputField}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="shippingMethod">Shipping Method</label>
+            <select
+              id="shippingMethod"
+              name="shippingMethod"
+              value={paymentData.shippingMethod}
+              onChange={handleChange}
+              className={styles.inputField}
+            >
+              <option value="">Select shipping method</option>
+              <option value="standard">Standard Shipping</option>
+              <option value="express">Express Shipping</option>
+            </select>
+          </div>
+          {/* Other payment form fields */}
+          <Link href="/booking/thank-you">
+            <div className={styles.nextButton}>Pay Now</div>
+          </Link>
+        </form>
       </div>
-    </div>
+    </>
   );
 };
 
-export default BuyersInfo;
+export default Payment;
