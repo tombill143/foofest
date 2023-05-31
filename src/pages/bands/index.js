@@ -1,5 +1,7 @@
 import Link from "next/link";
 import styles from "../../styles/Bands.module.css";
+
+
 export const getStaticProps = async () => {
   const res = await fetch("https://positive-pushy-oatmeal.glitch.me/bands");
   const data = await res.json();
@@ -13,17 +15,17 @@ export const getStaticProps = async () => {
 
 const Bands = ({ bands }) => {
   return (
-    <div>
-      <h1>Lineup</h1>
-      {bands.map((band) => (
-        <Link
-          href={"/bands/" + band.slug}
-          className={styles.single}
-          key={band.slug}
-        >
+    <div className={styles.all_container}>
+      <h1>LINEUP</h1>
+      <div className={styles.squarecontainer}>
+
+         {bands.map((band) => (
+         <Link href={"/bands/" + band.slug} className={styles.single} key={band.slug}>
+         {/* would be so cool to get the image to show in the squares if time */}
           <h3>{band.name}</h3>
-        </Link>
-      ))}
+         </Link>
+         ))}
+      </div>
     </div>
   );
 };

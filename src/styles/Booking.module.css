@@ -1,0 +1,318 @@
+.item_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.dashboard_items {
+  background-color: white;
+  border: 2px;
+  margin: 1rem;
+  border-style: solid;
+  border-color: black;
+  padding: 2rem;
+}
+
+.dashboard_items a {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard_items:hover {
+  border-color: greenyellow;
+}
+
+.btn {
+  display: block;
+  width: 150px;
+  padding: 8px 0;
+  margin: 20px auto;
+  background: #a6c196;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+}
+
+.gridContainer {
+  padding-top: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftColumn {
+  margin-bottom: 6em;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 100px; /* Adjust the left margin as needed */
+  margin-bottom: 14em;
+}
+
+.text {
+  margin-left: 20px; /* Adjust the left margin for the text as needed */
+}
+
+.checkboxContainer {
+  margin-top: 20px; /* Adjust the top margin as needed */
+}
+
+.checkboxLabel {
+  margin-bottom: 10px; /* Adjust the bottom margin as needed */
+}
+
+.checkbox {
+  margin-right: 10px; /* Adjust the right margin as needed */
+}
+
+.choosingTent {
+  margin-top: 2em;
+}
+
+.hrLine {
+  border: none;
+  border-top: 1px solid #ffffff; /* Adjust the color and style as needed */
+  margin-top: 10px; /* Adjust the top margin as needed */
+}
+
+.dropdown {
+  margin-top: 10px; /* Adjust the top margin as needed */
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  width: 200px; /* Adjust the width as needed */
+}
+
+.dropdown:hover {
+  border-color: #888;
+}
+
+.dropdown:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.dropdown option {
+  padding: 8px;
+}
+
+.nextButton {
+  display: inline-block;
+  margin-left: 30em;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nextButton:hover {
+  background-color: #45a049;
+}
+
+.h2buyersInfo {
+  margin-left: 6em;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formContainer label {
+  margin-bottom: 1rem;
+  margin-left: 9em;
+}
+
+.formContainer input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.formContainer button {
+  margin-top: 1rem;
+}
+
+.zipcodeLabel {
+  width: 130px; /* Adjust the width as needed */
+}
+
+.verticalLine {
+  border-left: 1px solid rgb(255, 255, 255); /* Adjust the color and thickness as desired */
+  position: absolute;
+  height: 60%;
+  margin-top: 6em;
+
+  left: 50%; /* Adjust the left position if needed */
+  /* z-index: -1 */ /* Ensure the line is behind the content */
+}
+
+.h1thankyou {
+  margin-top: 2em;
+  text-align: center;
+}
+
+.hornsimage {
+  margin-top: 1em;
+  margin-left: 38%;
+}
+
+.thankyoubutton {
+  display: inline-block;
+  margin-left: 40em;
+  margin-top: 3em;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.girlimage {
+  margin: auto 0;
+  filter: drop-shadow(30px 10px 4px #272727);
+}
+
+.single {
+  cursor: pointer;
+}
+
+.single h2 {
+  /* Add or modify styles for h2 elements */
+  /* For example: */
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  /* Add any other desired styles */
+}
+
+.single h3 {
+  /* Add or modify styles for h3 elements */
+  /* For example: */
+  font-size: 16px;
+  color: #888888;
+  /* Add any other desired styles */
+}
+
+.unavailable {
+  opacity: 0.5; /* Example: reduce the opacity of unavailable campsite */
+  /* Add any additional styles to indicate unavailability */
+}
+
+.columnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Booking.module.css */
+
+.paymentForm {
+  display: grid;
+  margin-top: 3em;
+  justify-content: center;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.inputField {
+  width: 300px; /* Adjust the width as needed */
+  padding: 10px;
+  font-size: 16px;
+}
+
+.nextButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nextButton:hover {
+  background-color: #45a049;
+}
+
+/* Add additional styles as needed */
+
+.paymentHeading {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.centeredInput {
+  text-align: center;
+  /* Add any additional styling as needed */
+}
+
+.paymentForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paymentForm .formGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.paymentForm label {
+  margin-bottom: 0.5rem;
+}
+
+.paymentForm input,
+.paymentForm select {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.backToHomePageButton {
+  display: block;
+  margin: 0 auto;
+  width: 12%;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  padding: 8px 18px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

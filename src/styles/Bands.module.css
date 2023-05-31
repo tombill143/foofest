@@ -1,11 +1,54 @@
 .single {
   padding: 2px 16px;
-  background-color: #a6c196;
+  background-color: var(--green);
   display: block;
   margin: 20px 10px;
-  border-left: 8px solid #fff;
+  /* border-left: 8px solid #fff; */
 }
 
 .single:hover {
-  border-left: 8px solid #c7faaa;
+  /* background-color:  var(--grey); */
+  background-color:  #c7faaa;
+  /* maybe green is better idk */
+}
+
+.squarecontainer{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+}
+
+.squarecontainer a{
+  margin: 0;
+  width: 13rem;
+  height: 13rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.squarecontainer h3{
+  margin: 0;
+  /* having some issues with getting the wrapped/longer band names in the center */
+}
+
+.all_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.all_container h1{
+  margin: 5rem;
+}
+
+.band_members{
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 0;
 }
