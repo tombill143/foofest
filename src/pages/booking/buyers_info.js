@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
+import Timer from "../componants/Timer";
 import Head from "next/head";
 
 const BuyersInfo = () => {
   const [formData, setFormData] = useState({
     firstName: "",
+    // do we need to do it like this?: const [name, setName] = useState("");
     lastName: "",
     email: "",
     address: "",
@@ -28,11 +31,7 @@ const BuyersInfo = () => {
         <div className={styles.gridContainer}>
           <section className={styles.home_hero}>
             <div className={styles.leftColumn}>
-              <img
-                src="/selectionimg.JPG"
-                alt="Description of the image"
-                className={styles.image}
-              />
+              <img src="/selectionimg.JPG" alt="Description of the image" className={styles.image} />
               {/* Timer component or other content */}
             </div>
           </section>
@@ -44,53 +43,23 @@ const BuyersInfo = () => {
                 <form className={styles.formContainer}>
                   <label>
                     First Name:
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      className={styles.formInput}
-                    />
+                    <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} className={styles.formInput} />
                   </label>
                   <label>
                     Last Name:
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      className={styles.formInput}
-                    />
+                    <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} className={styles.formInput} />
                   </label>
                   <label>
                     Address:
-                    <input
-                      type="text"
-                      name="address"
-                      value={formData.address}
-                      onChange={handleChange}
-                      className={styles.formInput}
-                    />
+                    <input type="text" name="address" value={formData.address} onChange={handleChange} className={styles.formInput} />
                   </label>
                   <label>
                     Email:
-                    <input
-                      type="text"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className={styles.formInput}
-                    />
+                    <input type="text" name="email" value={formData.email} onChange={handleChange} className={styles.formInput} />
                   </label>
                   <label className={styles.zipcodeLabel}>
                     Zipcode:
-                    <input
-                      type="text"
-                      name="zipcode"
-                      value={formData.zipcode}
-                      onChange={handleChange}
-                      className={styles.formInput}
-                    />
+                    <input type="text" name="zipcode" value={formData.zipcode} onChange={handleChange} className={styles.formInput} />
                   </label>
                   <Link
                     href={{
