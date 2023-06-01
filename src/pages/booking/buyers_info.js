@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
 import Head from "next/head";
+import Timer from "../componants/Timer";
 
 const BuyersInfo = () => {
   const router = useRouter();
@@ -48,7 +49,7 @@ const BuyersInfo = () => {
           <section className={styles.home_hero}>
             <div className={styles.leftColumn}>
               <img src="/selectionimg.JPG" alt="Description of the image" className={styles.image} />
-              {/* Timer component or other content */}
+              <Timer seconds={2000} />
             </div>
           </section>
           <section className={styles.home_hero}>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Timer from "../componants/Timer";
+
+
 import Head from "next/head";
 
 const Selection = () => {
@@ -52,6 +54,8 @@ const Selection = () => {
         <title>Select Tickets</title>
         <meta name="keywords" content="foofest" />
       </Head>
+     
+
 
       <div className={styles.gridContainer}>
         <section className={styles.home_hero}>
@@ -61,8 +65,11 @@ const Selection = () => {
               alt="Description of the image"
               className={styles.image}
             />
-            <Timer seconds={10} /> {/* Add the Timer component here */}
+          
+          <Timer seconds={2000} />
+
           </div>
+
         </section>
         <section className={styles.home_hero}>
           <div className={styles.rightColumn}>
