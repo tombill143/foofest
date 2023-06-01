@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../../styles/Booking.module.css";
 import Head from "next/head";
 import Link from "next/link";
-import { createClient } from "@supabase/supabase-js";
+// import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -116,13 +116,7 @@ const Payment = () => {
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="shippingMethod">Shipping Method</label>
-            <select
-              id="shippingMethod"
-              name="shippingMethod"
-              value={paymentData.shippingMethod}
-              onChange={handleChange}
-              className={styles.inputField}
-            >
+            <select id="shippingMethod" name="shippingMethod" value={paymentData.shippingMethod} onChange={handleChange} className={styles.inputField}>
               <option value="">Select shipping method</option>
               <option value="standard">Standard Shipping</option>
               <option value="express">Express Shipping</option>
