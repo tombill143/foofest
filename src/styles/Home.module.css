@@ -6,11 +6,10 @@
 .text {
   color: #ffff;
   text-align: center;
-
-  width: 100%;
-  font-weight: 700;
-  font-style: italic;
-  font-size: large;
+  font-weight: 200;
+  line-height: 2.3rem;
+  font-size: 1.25rem;
+  padding: 3vw;
 }
 .btn {
   display: block;
@@ -35,7 +34,7 @@
   /* position: absolute;
   top: 9rem;
   left: 0; */
-  background-image: url("https://images.pexels.com/photos/8448582/pexels-photo-8448582.jpeg");
+  background-image: url("/public/foofesthero.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
