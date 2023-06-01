@@ -26,8 +26,6 @@ export const getStaticProps = async (context) => {
   };
 };
 
-function BandImages(image) {}
-
 const Bio = ({ band }) => {
   let members = band.members;
   if (members && typeof members === "string") {
@@ -38,7 +36,8 @@ const Bio = ({ band }) => {
     <div className={styles.all_container}>
       <h1>{band.name}</h1>
 
-      <img src={band.logo} alt="band image" />
+      <img src={imageURL} className={styles.band_image} alt="band image" />
+      {/* <img src={band.logo} alt="band image" /> */}
       {/* the image */}
 
       {members && (
@@ -49,10 +48,10 @@ const Bio = ({ band }) => {
         </ul>
       )}
 
-      <p>{band.genre}</p>
-      <p>{band.logoCredits}</p>
-      <p>{band.logo}</p>
-      <p>{band.bio}</p>
+      <p>Music genre: {band.genre}</p>
+
+      <p className={styles.band_bio}>{band.bio}</p>
+      <p className={styles.credits}>Photo credits: {band.logoCredits}</p>
     </div>
   );
 };

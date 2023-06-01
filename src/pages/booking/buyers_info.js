@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
-import Timer from "../componants/Timer";
 import Head from "next/head";
 
 const BuyersInfo = () => {
@@ -67,7 +66,7 @@ const BuyersInfo = () => {
                       query: formData,
                     }}
                   >
-                    <button type="submit" className={styles.nextButton}>
+                    <button type="submit" className={styles.btn}>
                       Go To Payment
                     </button>
                   </Link>

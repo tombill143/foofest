@@ -5,16 +5,16 @@
 }
 
 .dashboard_items {
-  background-color: white;
+  background-color: var(--white);
   border: 2px;
   margin: 1rem;
   border-style: solid;
-  border-color: black;
+  border-color: var(--black);
   padding: 2rem;
 }
 
 .dashboard_items a {
-  color: black;
+  color: var(--black);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,6 +23,7 @@
 
 .dashboard_items:hover {
   border-color: greenyellow;
+  /* we need a var thing for this! */
 }
 
 .btn {
@@ -32,7 +33,7 @@
   margin: 20px auto;
   background: #a6c196;
   border-radius: 4px;
-  color: white;
+  color: var(--white);
   text-align: center;
 }
 
@@ -83,8 +84,8 @@
 
 .hrLine {
   border: none;
-  border-top: 1px solid #ffffff; /* Adjust the color and style as needed */
-  margin-top: 10px; /* Adjust the top margin as needed */
+  border-top: 1px solid var(--white); 
+  margin-top: 10px; 
 }
 
 .dropdown {
@@ -92,8 +93,10 @@
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
+  /* var for this */
+
   border-radius: 4px;
-  background-color: #fff;
+  background-color: var(--white);
   width: 200px; /* Adjust the width as needed */
 }
 
@@ -110,7 +113,7 @@
   padding: 8px;
 }
 
-.nextButton {
+/* .nextButton {
   display: inline-block;
   margin-left: 30em;
   padding: 12px 24px;
@@ -124,11 +127,11 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
+} */
 
-.nextButton:hover {
+/* .nextButton:hover {
   background-color: #45a049;
-}
+} */
 
 .h2buyersInfo {
   margin-left: 6em;
@@ -164,7 +167,6 @@
   position: absolute;
   height: 60%;
   margin-top: 6em;
-
   left: 50%; /* Adjust the left position if needed */
   /* z-index: -1 */ /* Ensure the line is behind the content */
 }
@@ -188,8 +190,8 @@
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
-  color: white;
-  background-color: #4caf50;
+  color: var(--white);
+  background-color: var(--greem);
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -198,7 +200,7 @@
 
 .girlimage {
   margin: auto 0;
-  filter: drop-shadow(30px 10px 4px #272727);
+  filter: drop-shadow(30px 10px 4px var(--black));
 }
 
 .single {
@@ -210,7 +212,7 @@
   /* For example: */
   font-size: 20px;
   font-weight: bold;
-  color: black;
+  color: var(--black);
   /* Add any other desired styles */
 }
 
@@ -251,7 +253,7 @@
   font-size: 16px;
 }
 
-.nextButton {
+/* .nextButton {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 16px;
@@ -260,11 +262,11 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
+} */
 
-.nextButton:hover {
+/* .nextButton:hover {
   background-color: #45a049;
-}
+} */
 
 /* Add additional styles as needed */
 
@@ -301,6 +303,8 @@
   padding: 0.5rem;
 }
 
+
+/* do we realle need a new button for this? whhy not just id */
 .backToHomePageButton {
   display: block;
   margin: 0 auto;
@@ -310,9 +314,15 @@
   margin-top: 20px;
   padding: 8px 18px;
   font-size: 16px;
-  background-color: #4caf50;
-  color: #fff;
+  background-color: var(--green);
+  color: var(--white);
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.paymentSummary {
+  text-align: center;
+  margin-top: 3em;
+  margin-left: 4em;
 }
