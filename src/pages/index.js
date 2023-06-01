@@ -15,16 +15,11 @@ export default function Home() {
 
       <div>
         <section className={styles.home_hero}>
-          {/* <img src="foofesthero.png"></img> */}
 
           <h3>XX DAYS IN JUNE</h3>
           <h1 className={styles.title}>
             THE ROCK FESTIVAL <br></br> DEEP IN THE FOREST
           </h1>
-
-          {/* <Link className={styles.btn} href="/bands">
-          Band Listings
-        </Link> */}
 
           <Link className={styles.btn} href="/booking">
             BOOK YOUR TICKETS NOW
@@ -41,6 +36,7 @@ export default function Home() {
             miss out! Secure your spot and buy your tickets now.
           </p>
         </section>
+        
         <div className={styles.buttonContainer}>
           <button className={styles.button}>
             <svg
