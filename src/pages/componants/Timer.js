@@ -1,39 +1,44 @@
-
+import React, { useEffect, useState } from "react";
 import styles from "src/styles/Timer.module.css";
-import { useEffect, useState } from "react";
-import { Thasadith } from "next/font/google";
-import { exportPathMap } from "../../../next.config";
 
 const useCountDown = (start) => {
   const [counter, setCounter] = useState(start);
+
   useEffect(() => {
-    if (counter === 0) {
-
-      return;
-
-
-      // guess we're adding some uuuh a popup screen saying time is up 
-    }
     const timer = setTimeout(() => {
-      setCounter(counter - 1);
+      setCounter((prevCounter) => prevCounter - 1);
     }, 1000);
+
     return () => clearTimeout(timer);
   }, [counter]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.localStorage) {
+      localStorage.setItem("timer", counter.toString());
+    }
+  }, [counter]);
+
   return counter;
 };
 
 function Timer({ seconds }) {
-  const timeLeft = useCountDown(seconds);
+  let initialCounter = seconds;
+
+  if (typeof window !== "undefined" && window.localStorage) {
+    const storedTimer = localStorage.getItem("timer");
+    initialCounter = storedTimer ? parseInt(storedTimer) : seconds;
+  }
+
+  const timeLeft = useCountDown(initialCounter);
+
   return (
-
     <div className={styles.timercontainer}>
-       <div className={styles.timertext}>
-         <p>Reservation ends in</p>
-         <div className={styles.timer}>{timeLeft}s</div>
-       </div>
+      <div className={styles.timertext}>
+        <p>Reservation ends in</p>
+        <div className={styles.timer}>{timeLeft}s</div>
+      </div>
     </div>
-  ) 
-
+  );
 }
 
 export default Timer;
@@ -42,6 +47,111 @@ export default Timer;
 
 
 
+
+
+
+
+
+
+
+
+
+// import styles from "src/styles/Timer.module.css";
+// import { useEffect, useState } from "react";
+// import { Thasadith } from "next/font/google";
+// import { exportPathMap } from "../../../next.config";
+
+// const useCountDown = (start) => {
+//   const [counter, setCounter] = useState(start);
+//   useEffect(() => {
+ 
+//     const timer = setTimeout(() => {
+//       setCounter(counter - 1);
+//     }, 1000);
+//     return () => clearTimeout(timer);
+//   }, [counter]);
+//   return counter;
+// };
+
+// function Timer({ seconds }) {
+//   const timeLeft = useCountDown(seconds);
+//   return (
+
+//     <div className={styles.timercontainer}>
+//        <div className={styles.timertext}>
+//          <p>Reservation ends in</p>
+//          <div className={styles.timer}>{timeLeft}s</div>
+//        </div>
+//     </div>
+//   ) 
+
+// }
+
+// export default Timer;
+
+
+// function Timer({ seconds }) {
+//   const storedTimer = localStorage.getItem("timer");
+//   const initialCounter = storedTimer ? parseInt(storedTimer) : seconds;
+//   const timeLeft = useCountDown(initialCounter);
+// };
+
+
+// // import styles from "src/styles/Timer.module.css";
+// // import { useEffect, useState } from "react";
+
+// // const useCountDown = (start) => {
+// //   const [counter, setCounter] = useState(start);
+
+// //   useEffect(() => {
+// //     const storedTimer = localStorage.getItem("timer");
+// //     const initialCounter = storedTimer ? parseInt(storedTimer) : start;
+
+// //     const timer = setTimeout(() => {
+// //       setCounter((previousCounter) => previousCounter - 1);
+// //     }, 1000);
+
+// //     return () => clearTimeout(timer);
+// //   }, []);
+
+// //   useEffect(() => {
+// //     localStorage.setItem("timer", counter.toString());
+// //   }, [counter]);
+
+  
+
+// //   return counter;
+// // };
+
+// // function Timer({ seconds }) {
+// //   const timeLeft = useCountDown(seconds);
+
+// //   return (
+// //     <div className={styles.timercontainer}>
+// //       <div className={styles.timertext}>
+// //         <p>Reservation ends in</p>
+// //         <div className={styles.timer}>{timeLeft}s</div>
+// //       </div>
+// //     </div>
+// //   );
+// // }
+
+
+
+// // export default Timer;
+
+
+
+
+
+
+
+
+
+
+
+
+// __________________________old code___________________________
 
 // import { CountdownCircleTimer } from "react-countdown-circle-timer";
 

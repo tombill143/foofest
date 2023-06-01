@@ -3,6 +3,8 @@ import styles from "../../styles/Booking.module.css";
 import Head from "next/head";
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
+import Timer from "../componants/Timer"
+
 
 const supabase = createClient(
   "https://ajpnubqenhfdlqfvcruv.supabase.co",
@@ -98,8 +100,11 @@ const Payment = () => {
     <>
       <Head>{/* ... */}</Head>
       <div>
+      <Timer seconds={2000} />
+
         <h1 className={styles.paymentHeading}>Payment Details</h1>
         <form onSubmit={handleSubmit} className={styles.paymentForm}>
+          
           {/* Hidden fields for URL data */}
           <input
             type="hidden"
@@ -204,6 +209,7 @@ const Payment = () => {
             Pay Now
           </button>
         </form>
+
       </div>
     </>
   );

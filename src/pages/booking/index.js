@@ -7,6 +7,8 @@ const Booking = ({ spots }) => {
   const router = useRouter();
   console.log("spots:", spots);
 
+  
+
   const handleCampsiteSelection = (area) => {
     router.push(`/booking/selection?campsite=${area}`);
   };
