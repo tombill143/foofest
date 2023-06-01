@@ -111,13 +111,13 @@ const Payment = () => {
           {/* Hidden fields for URL data */}
           <input
             type="hidden"
-            id="firstname"
+            id="firstName"
             name="firstname"
             value={paymentData.firstname}
           />
           <input
             type="hidden"
-            id="lastname"
+            id="lastName"
             name="lastname"
             value={paymentData.lastname}
           />
