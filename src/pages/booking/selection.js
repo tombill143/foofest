@@ -9,6 +9,7 @@ const Selection = () => {
   const router = useRouter();
   const { ticketType: initialTicketType, numTickets: initialNumTickets } =
     router.query;
+  const [selectedNumTents, setSelectedNumTents] = useState(0);
 
   const [selectedNumTickets, setSelectedNumTickets] = useState(
     initialNumTickets ?? ""
@@ -31,6 +32,7 @@ const Selection = () => {
       ticketType: selectedTicketType || "",
       numTickets: selectedNumTickets ? parseInt(selectedNumTickets) : 0,
       campsite: router.query.campsite || "",
+      numTents: selectedNumTents ? parseInt(selectedNumTents) : 0,
     };
 
     // Navigate to the destination page with the query parameters
@@ -109,21 +111,25 @@ const Selection = () => {
               <div className={styles.columnContainer}>
                 <div>
                   <h3 className={styles.choosingTent}>2 Man Tent</h3>
-                  <select className={styles.dropdown}>
+                  <select
+                    className={styles.dropdown}
+                    value={selectedNumTents}
+                    onChange={(e) => setSelectedNumTents(e.target.value)}
+                  >
                     {selectedNumTickets === "1" ||
-                    selectedNumTickets === undefined ? (
+                    selectedNumTickets === "2" ? (
                       <>
-                        <option value="no-tent">0</option>
-                        <option value="tent1">1</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
                       </>
                     ) : (
                       <>
-                        <option value="no-tent">0</option>
-                        <option value="tent1">1</option>
-                        <option value="tent2">2</option>
-                        <option value="tent3">3</option>
-                        <option value="tent4">4</option>
-                        <option value="tent5">5</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                       </>
                     )}
                   </select>
@@ -132,10 +138,10 @@ const Selection = () => {
                 <div>
                   <h3 className={styles.choosingTent}>3 Man Tent</h3>
                   <select className={styles.dropdown} disabled={isTentDisabled}>
-                    <option value="no-tent">0</option>
-                    <option value="tent1">1</option>
-                    <option value="tent2">2</option>
-                    <option value="tent3">3</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
                   </select>
                 </div>
               </div>

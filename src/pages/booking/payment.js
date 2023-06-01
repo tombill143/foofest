@@ -24,11 +24,21 @@ const Payment = () => {
     address: "",
     zipcode: "",
     campsite: "",
+    numberOf2ManTents: "",
   });
 
   useEffect(() => {
     // Retrieve data from URL parameters
-    const { firstname, lastname, email, address, zipcode } = router.query;
+    const {
+      firstName,
+      lastName,
+      email,
+      address,
+      zipcode,
+      campsite,
+      numTickets,
+      numberOf2ManTents, // Add numberOf2ManTents to the destructured object
+    } = router.query;
 
     // Update paymentData state with the retrieved data
     setPaymentData((prevData) => ({
@@ -39,8 +49,10 @@ const Payment = () => {
       address: address || "",
       zipcode: zipcode || "",
       campsite: campsite || "",
+      numTickets: numTickets || "",
+      numberOf2ManTents: numberOf2ManTents || "", // Assign numberOf2ManTents to the paymentData state
     }));
-  }, []);
+  }, [router.query]);
 
   const handleChange = (e) => {
     setPaymentData({
@@ -67,6 +79,8 @@ const Payment = () => {
         email: paymentData.email,
         address: paymentData.address,
         zipcode: paymentData.zipcode,
+        campsite: paymentData.campsite,
+        numberOf2ManTents: paymentData.numberOf2ManTents,
       };
 
       if (error) {
@@ -102,11 +116,13 @@ const Payment = () => {
         <h1 className={styles.paymentHeading}>Payment Details</h1>
         <form onSubmit={handleSubmit} className={styles.paymentForm}>
           {/* Hidden fields for URL data */}
-          <input type="hidden" id="firstname" name="firstname" value={paymentData.firstname} />
-          <input type="hidden" id="lastname" name="lastname" value={paymentData.lastname} />
+          <input type="hidden" id="firstName" name="firstname" value={paymentData.firstname} />
+          <input type="hidden" id="lastName" name="lastname" value={paymentData.lastname} />
           <input type="hidden" id="email" name="email" value={paymentData.email} />
           <input type="hidden" id="address" name="address" value={paymentData.address} />
           <input type="hidden" id="zipcode" name="zipcode" value={paymentData.zipcode} />
+          <input type="hidden" id="campsite" name="campsite" value={paymentData.campsite} />
+          <input type="hidden" id="numtickets" name="numtickets" value={paymentData.numberOf2ManTents} />
 
           {/* Existing payment form fields */}
           <div className={styles.formGroup}>

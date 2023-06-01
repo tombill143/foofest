@@ -5,17 +5,34 @@ import Link from "next/link";
 import Head from "next/head";
 
 const BuyersInfo = () => {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     firstName: "",
-    // do we need to do it like this?: const [name, setName] = useState("");
     lastName: "",
     email: "",
     address: "",
     zipcode: "",
+    campsite: "",
+    numberOf2ManTents: router.query.numTents || "", // Store numTents data
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const query = {
+      ...formData,
+      campsite: router.query.campsite, // Include the campsite from URL query
+    };
+
+    router.push({
+      pathname: "/booking/payment",
+      query,
+    });
   };
 
   return (
@@ -39,7 +56,7 @@ const BuyersInfo = () => {
               <div className={styles.checkboxContainer}>
                 <h2 className={styles.h2buyersInfo}>Buyers Info</h2>
 
-                <form className={styles.formContainer}>
+                <form className={styles.formContainer} onSubmit={handleSubmit}>
                   <label>
                     First Name:
                     <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} className={styles.formInput} />
@@ -60,16 +77,9 @@ const BuyersInfo = () => {
                     Zipcode:
                     <input type="text" name="zipcode" value={formData.zipcode} onChange={handleChange} className={styles.formInput} />
                   </label>
-                  <Link
-                    href={{
-                      pathname: "/booking/payment",
-                      query: formData,
-                    }}
-                  >
-                    <button type="submit" className={styles.btn}>
-                      Go To Payment
-                    </button>
-                  </Link>
+                  <button type="submit" className={styles.btn}>
+                    Go To Payment
+                  </button>
                 </form>
               </div>
             </div>
