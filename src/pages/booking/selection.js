@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
-import Link from "next/link";
 import Timer from "../componants/Timer";
 import Head from "next/head";
 
