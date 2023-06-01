@@ -1,7 +1,5 @@
 import Head from "next/head";
-import Navbar from "./componants/Navbar";
 import styles from "../styles/Home.module.css";
-import Footer from "./componants/Footer";
 import Link from "next/link";
 import React, { useRef } from "react";
 

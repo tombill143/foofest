@@ -23,6 +23,7 @@ const Payment = () => {
     email: "",
     address: "",
     zipcode: "",
+    campsite: "",
   });
 
   useEffect(() => {
@@ -32,11 +33,12 @@ const Payment = () => {
     // Update paymentData state with the retrieved data
     setPaymentData((prevData) => ({
       ...prevData,
-      firstname: firstname || "",
-      lastname: lastname || "",
+      firstname: firstName || "",
+      lastname: lastName || "",
       email: email || "",
       address: address || "",
       zipcode: zipcode || "",
+      campsite: campsite || "",
     }));
   }, []);
 
@@ -51,11 +53,10 @@ const Payment = () => {
     e.preventDefault();
 
     try {
-      // Convert the shipping method value to a boolean
       const shippingMethod = paymentData.shippingMethod === "express";
 
-      // Insert the payment data into Supabase
-      const { data, error } = await supabase.from("customers").insert({
+      // Create a separate object for the API request
+      const requestData = {
         cardNumber: paymentData.cardNumber,
         nameOnCard: paymentData.nameOnCard,
         expirationDate: paymentData.expirationDate,
@@ -66,7 +67,7 @@ const Payment = () => {
         email: paymentData.email,
         address: paymentData.address,
         zipcode: paymentData.zipcode,
-      });
+      };
 
       if (error) {
         console.log("Error inserting data: ", error.message);
@@ -79,7 +80,7 @@ const Payment = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(paymentData),
+          body: JSON.stringify(requestData), // Use the requestData object here
         });
 
         if (response.ok) {
@@ -100,6 +101,14 @@ const Payment = () => {
       <div>
         <h1 className={styles.paymentHeading}>Payment Details</h1>
         <form onSubmit={handleSubmit} className={styles.paymentForm}>
+          {/* Hidden fields for URL data */}
+          <input type="hidden" id="firstname" name="firstname" value={paymentData.firstname} />
+          <input type="hidden" id="lastname" name="lastname" value={paymentData.lastname} />
+          <input type="hidden" id="email" name="email" value={paymentData.email} />
+          <input type="hidden" id="address" name="address" value={paymentData.address} />
+          <input type="hidden" id="zipcode" name="zipcode" value={paymentData.zipcode} />
+
+          {/* Existing payment form fields */}
           <div className={styles.formGroup}>
             <label htmlFor="cardNumber">Card Number</label>
             <input
