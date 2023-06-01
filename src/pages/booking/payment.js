@@ -24,12 +24,21 @@ const Payment = () => {
     address: "",
     zipcode: "",
     campsite: "",
+    numberOf2ManTents: "",
   });
 
   useEffect(() => {
     // Retrieve data from URL parameters
-    const { firstName, lastName, email, address, zipcode, campsite } =
-      router.query;
+    const {
+      firstName,
+      lastName,
+      email,
+      address,
+      zipcode,
+      campsite,
+      numTickets,
+      numberOf2ManTents, // Add numberOf2ManTents to the destructured object
+    } = router.query;
 
     // Update paymentData state with the retrieved data
     setPaymentData((prevData) => ({
@@ -39,7 +48,9 @@ const Payment = () => {
       email: email || "",
       address: address || "",
       zipcode: zipcode || "",
-      campsite: campsite || "", // Add campsite to the paymentData state
+      campsite: campsite || "",
+      numTickets: numTickets || "",
+      numberOf2ManTents: numberOf2ManTents || "", // Assign numberOf2ManTents to the paymentData state
     }));
   }, [router.query]);
 
@@ -69,6 +80,7 @@ const Payment = () => {
         address: paymentData.address,
         zipcode: paymentData.zipcode,
         campsite: paymentData.campsite,
+        numberOf2ManTents: paymentData.numberOf2ManTents,
       };
 
       // Insert the payment data into Supabase
@@ -144,6 +156,12 @@ const Payment = () => {
             id="campsite"
             name="campsite"
             value={paymentData.campsite}
+          />
+          <input
+            type="hidden"
+            id="numtickets"
+            name="numtickets"
+            value={paymentData.numberOf2ManTents}
           />
 
           {/* Existing payment form fields */}
