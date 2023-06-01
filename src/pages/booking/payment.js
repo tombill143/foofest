@@ -25,6 +25,7 @@ const Payment = () => {
     zipcode: "",
     campsite: "",
     numberOf2ManTents: "",
+    numberOf3ManTents: "",
   });
 
   useEffect(() => {
@@ -37,7 +38,8 @@ const Payment = () => {
       zipcode,
       campsite,
       numTickets,
-      numberOf2ManTents, // Add numberOf2ManTents to the destructured object
+      numberOf2ManTents,
+      numberOf3ManTents, // Add numberOf2ManTents to the destructured object
     } = router.query;
 
     // Update paymentData state with the retrieved data
@@ -51,14 +53,27 @@ const Payment = () => {
       campsite: campsite || "",
       numTickets: numTickets || "",
       numberOf2ManTents: numberOf2ManTents || "", // Assign numberOf2ManTents to the paymentData state
+      numberOf3ManTents: numberOf3ManTents || "", // Assign numberOf2ManTents to the paymentData state
     }));
   }, [router.query]);
 
   const handleChange = (e) => {
-    setPaymentData({
-      ...paymentData,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === "numberOf2ManTents") {
+      setPaymentData({
+        ...paymentData,
+        numberOf2ManTents: e.target.value,
+      });
+    } else if (e.target.name === "numberOf3ManTents") {
+      setPaymentData({
+        ...paymentData,
+        numberOf3ManTents: e.target.value,
+      });
+    } else {
+      setPaymentData({
+        ...paymentData,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -163,7 +178,19 @@ const Payment = () => {
             name="numtickets"
             value={paymentData.numberOf2ManTents}
           />
+          <input
+            type="hidden"
+            id="numTents"
+            name="numberOf2ManTents"
+            value={paymentData.numberOf3ManTents}
+          />
 
+          <input
+            type="hidden"
+            id="numTents3"
+            name="numberOf3ManTents"
+            value={paymentData.numberOf3ManTents}
+          />
           {/* Existing payment form fields */}
           <div className={styles.formGroup}>
             <label htmlFor="cardNumber">Card Number</label>

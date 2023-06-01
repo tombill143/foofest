@@ -10,6 +10,7 @@ const Selection = () => {
   const { ticketType: initialTicketType, numTickets: initialNumTickets } =
     router.query;
   const [selectedNumTents, setSelectedNumTents] = useState(0);
+  const [selectedNumTents3, setSelectedNumTents3] = useState(0);
 
   const [selectedNumTickets, setSelectedNumTickets] = useState(
     initialNumTickets ?? ""
@@ -33,6 +34,7 @@ const Selection = () => {
       numTickets: selectedNumTickets ? parseInt(selectedNumTickets) : 0,
       campsite: router.query.campsite || "",
       numTents: selectedNumTents ? parseInt(selectedNumTents) : 0,
+      numTents3: selectedNumTents3 ? parseInt(selectedNumTents3) : 0, // Add numTents3 to the query parameters
     };
 
     // Navigate to the destination page with the query parameters
@@ -137,7 +139,12 @@ const Selection = () => {
 
                 <div>
                   <h3 className={styles.choosingTent}>3 Man Tent</h3>
-                  <select className={styles.dropdown} disabled={isTentDisabled}>
+                  <select
+                    className={styles.dropdown}
+                    disabled={isTentDisabled}
+                    value={selectedNumTents3} // Add value prop to maintain the selected value
+                    onChange={(e) => setSelectedNumTents3(e.target.value)} // Add onChange event handler to update selectedNumTents3
+                  >
                     <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>

@@ -15,6 +15,7 @@ const BuyersInfo = () => {
     zipcode: "",
     campsite: "",
     numberOf2ManTents: router.query.numTents || "", // Store numTents data
+    numberOf3ManTents: router.query.numTents3 || "", // Store numTents data
   });
 
   const handleChange = (e) => {
