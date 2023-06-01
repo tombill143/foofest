@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/Booking.module.css";
 import Head from "next/head";
-// import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
 
 const supabase = createClient(
