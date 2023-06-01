@@ -31,7 +31,6 @@ const Payment = () => {
   });
 
   useEffect(() => {
-    // Retrieve data from URL parameters
     const {
       firstName,
       lastName,
@@ -41,7 +40,7 @@ const Payment = () => {
       campsite,
       numTickets,
       numberOf2ManTents,
-      numberOf3ManTents, // Add numberOf2ManTents to the destructured object
+      numberOf3ManTents, 
     } = router.query;
 
     // Update paymentData state with the retrieved data
@@ -54,8 +53,8 @@ const Payment = () => {
       zipcode: zipcode || "",
       campsite: campsite || "",
       numTickets: numTickets || "",
-      numberOf2ManTents: numberOf2ManTents || "", // Assign numberOf2ManTents to the paymentData state
-      numberOf3ManTents: numberOf3ManTents || "", // Assign numberOf2ManTents to the paymentData state
+      numberOf2ManTents: numberOf2ManTents || "", 
+      numberOf3ManTents: numberOf3ManTents || "", 
     }));
   }, [router.query]);
 
@@ -133,14 +132,12 @@ const Payment = () => {
 
   return (
     <>
-      <Head>{/* ... */}</Head>
+      <Head></Head>
       <div>
       <Timer seconds={2000} />
-
-        <h1 className={styles.paymentHeading}>Payment Details</h1>
+      <h1 className={styles.paymentHeading}>Payment Details</h1>
         <form onSubmit={handleSubmit} className={styles.paymentForm}>
-          
-          {/* Hidden fields for URL data */}
+          {/* hidden fields for URL data */}
           <input
             type="hidden"
             id="firstName"
@@ -219,7 +216,7 @@ const Payment = () => {
               value={paymentData.nameOnCard}
               onChange={handleChange}
               required
-              className={`${styles.inputField} ${styles.centeredInput}`} // Add the centeredInput class here
+              className={`${styles.inputField} ${styles.centeredInput}`} 
             />
           </div>
           <div className={styles.formGroup}>
@@ -262,13 +259,12 @@ const Payment = () => {
               <option value="express">Express Shipping</option>
             </select>
           </div>
-          {/* ... */}
+     
 
           <button type="submit" className={styles.btn}>
             Pay Now
           </button>
         </form>
-
       </div>
     </>
   );

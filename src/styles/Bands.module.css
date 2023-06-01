@@ -12,13 +12,11 @@
   background-color: var(--green);
   display: block;
   margin: 20px 10px;
-  /* border-left: 8px solid #fff; */
+
 }
 
 .single:hover {
-  /* background-color:  var(--grey); */
   background-color: #c7faaa;
-  /* maybe green is better idk */
 }
 
 .squarecontainer {
@@ -40,9 +38,8 @@
 
 .squarecontainer h3 {
   margin: 0;
-  /* having some issues with getting the wrapped/longer band names in the center */
+  
 }
-
 
 
 /* ___________________ schedule page _____________ */
@@ -55,15 +52,9 @@
 }
 
 
-/* .schedule_table{
-  border: solid var(--white) 2px;
-
-} */
-
 .thead_schedule{
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
   align-items: center;
   justify-content: space-around;
 }
@@ -76,19 +67,16 @@
 .td{
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
 }
 
 .each_band{
  
-  /* background-color: var(--black); */
+
   background-color: var(--black);
   height: 20vh;
   width: 20vw;
   line-break:normal;
-  /* overflow:visible; */
-  /* how to get the long ass band names to be centered fuuuck */
   border-radius: 10px;
   margin: 10px;
   display: flex;

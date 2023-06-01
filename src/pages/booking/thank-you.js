@@ -4,13 +4,11 @@ import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { createClient } from "@supabase/supabase-js";
-import Timer from "../componants/Timer"
 
 
-// Initialize Supabase client
 const supabase = createClient(
-  /* URL */ "https://ajpnubqenhfdlqfvcruv.supabase.co",
-  /* API KEY */ "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFqcG51YnFlbmhmZGxxZnZjcnV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODU1MjExNDEsImV4cCI6MjAwMTA5NzE0MX0.x01cvbcNdxvDlmDEWUOD2s5G1Opvzltog68pGAwqtVE"
+ "https://ajpnubqenhfdlqfvcruv.supabase.co",
+ "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFqcG51YnFlbmhmZGxxZnZjcnV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODU1MjExNDEsImV4cCI6MjAwMTA5NzE0MX0.x01cvbcNdxvDlmDEWUOD2s5G1Opvzltog68pGAwqtVE"
 );
 
 const ThankYouPage = () => {
@@ -28,7 +26,7 @@ const ThankYouPage = () => {
     setPaymentData(data);
     console.log("Payment Data:", data);
 
-    // Store the payment data in your Supabase table
+   
     supabase
       .from("payments")
       .insert([data])
@@ -39,7 +37,7 @@ const ThankYouPage = () => {
         console.error("Error inserting data:", error);
       });
 
-    // ...
+
   }, []);
 
   return (

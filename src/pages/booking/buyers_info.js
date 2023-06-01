@@ -15,10 +15,11 @@ const BuyersInfo = () => {
     address: "",
     zipcode: "",
     campsite: "",
-    numberOf2ManTents: router.query.numTents || "", // Store numTents data
-    numberOf3ManTents: router.query.numTents3 || "", // Store numTents data
+    numberOf2ManTents: router.query.numTents || "", // storiinng number of tents data
+    numberOf3ManTents: router.query.numTents3 || "", 
   });
 
+ 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -28,7 +29,7 @@ const BuyersInfo = () => {
 
     const query = {
       ...formData,
-      campsite: router.query.campsite, // Include the campsite from URL query
+      campsite: router.query.campsite, // include the campsite from URL query
     };
 
     router.push({
@@ -51,12 +52,12 @@ const BuyersInfo = () => {
             <div className={styles.leftColumn}>
               <img
                 src="/selectionimg.JPG"
-                alt="Description of the image"
+                alt="image of a festival"
                 className={styles.image}
               />
                   <Timer seconds={2000} />
             </div>
-          </section>
+            </section>
           <section className={styles.home_hero}>
             <div className={styles.rightColumn}>
               <div className={styles.checkboxContainer}>

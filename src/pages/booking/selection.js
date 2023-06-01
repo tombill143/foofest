@@ -28,13 +28,13 @@ const Selection = () => {
   const handleNext = () => {
     const destinationPage = `/booking/buyers_info`;
 
-    // Prepare the query parameters to pass to the destination page
+    
     const queryParams = {
       ticketType: selectedTicketType || "",
       numTickets: selectedNumTickets ? parseInt(selectedNumTickets) : 0,
       campsite: router.query.campsite || "",
       numTents: selectedNumTents ? parseInt(selectedNumTents) : 0,
-      numTents3: selectedNumTents3 ? parseInt(selectedNumTents3) : 0, // Add numTents3 to the query parameters
+      numTents3: selectedNumTents3 ? parseInt(selectedNumTents3) : 0, 
     };
 
     // Navigate to the destination page with the query parameters
@@ -63,7 +63,7 @@ const Selection = () => {
               alt="Description of the image"
               className={styles.image}
             />
-            <Timer seconds={10} /> {/* Add the Timer component here */}
+            <Timer seconds={2000} />
           </div>
         </section>
         <section className={styles.home_hero}>

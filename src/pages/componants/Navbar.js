@@ -14,7 +14,6 @@ const Navbar = () => {
             width={128}
             height={100}
           />
-          {/* <Image src="/logo.png" alt="picture" width={128} height={100} /> */}
         </Link>
       </div>
       <ul>

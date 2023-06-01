@@ -278,3 +278,9 @@
   margin-left: 4em;
 }
 
+.btn {
+  border-radius: 35px;
+  cursor: pointer;
+  background-color: var(--green);
+}
+

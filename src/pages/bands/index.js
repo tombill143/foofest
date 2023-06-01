@@ -21,7 +21,6 @@ const Bands = ({ bands }) => {
 
          {bands.map((band) => (
          <Link href={"/bands/" + band.slug} className={styles.single} key={band.slug}>
-         {/* would be so cool to get the image to show in the squares if time */}
           <h3>{band.name}</h3>
          </Link>
          ))}

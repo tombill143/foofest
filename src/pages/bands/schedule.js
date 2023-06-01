@@ -22,14 +22,6 @@ const BandsSchedule = ({ bands }) => {
       <div className={styles.day_schedule}>
         <h2>MONDAY</h2>
         <table className={styles.schedule_table}>
-          {/* <thead className={styles.thead_schedule}>
-
-       
-          <h3>MIDGARD</h3>
-          <h3>JOTUNHEIM</h3>
-          <h3>VANAHEIM</h3>
-        
-        </thead> */}
 
           <tbody className={styles.tbody_schedule}>
             <tr className={styles.tr}>

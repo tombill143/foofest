@@ -7,8 +7,6 @@ const Booking = ({ spots }) => {
   const router = useRouter();
   console.log("spots:", spots);
 
-  
-
   const handleCampsiteSelection = (area) => {
     router.push(`/booking/selection?campsite=${area}`);
   };
@@ -48,12 +46,12 @@ const Booking = ({ spots }) => {
             </div>
           ))}
         </div>
-        <div
+        {/* <div
           className={styles.btn}
           onClick={() => router.push("/booking/selection")}
         >
           Skip this page
-        </div>
+        </div> */}
       </div>
     </>
   );
