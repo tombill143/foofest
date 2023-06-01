@@ -4,7 +4,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 const supabase = createClient(
   "https://ajpnubqenhfdlqfvcruv.supabase.co",
@@ -20,6 +19,14 @@ const Payment = () => {
     expirationDate: "",
     cvv: "",
     shippingMethod: "",
+  });
+
+  const queryParams = new URLSearchParams({
+    cardNumber: paymentData.cardNumber,
+    nameOnCard: paymentData.nameOnCard,
+    expirationDate: paymentData.expirationDate,
+    cvv: paymentData.cvv,
+    shippingMethod: paymentData.shippingMethod,
   });
 
   const handleChange = (e) => {
@@ -52,6 +59,17 @@ const Payment = () => {
 
     console.log("Data inserted:", data);
     console.log("Payment successful!");
+
+    // Redirect to thank you page with payment data in the URL
+    router.push(`/booking/thank-you?${queryParams.toString()}`);
+
+    // Wait for the insert operation to propagate to real-time subscriptions
+    await supabase
+      .from("customers")
+      .on("*")
+      .then(() => {
+        console.log("Data is now available in real time.");
+      });
   };
 
   return (
@@ -129,7 +147,7 @@ const Payment = () => {
             </select>
           </div>
           {/* Other payment form fields */}
-          <Link href="/booking/thank-you">
+          <Link href={`/booking/thank-you?${queryParams.toString()}`}>
             <div className={styles.nextButton}>Pay Now</div>
           </Link>
         </form>
