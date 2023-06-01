@@ -39,9 +39,9 @@ const Payment = () => {
       email: email || "",
       address: address || "",
       zipcode: zipcode || "",
-      campsite: campsite || "",
+      campsite: campsite || "", // Add campsite to the paymentData state
     }));
-  }, []);
+  }, [router.query]);
 
   const handleChange = (e) => {
     setPaymentData({
