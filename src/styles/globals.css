@@ -5,31 +5,32 @@
   --grey: #4a4949;
   --white: #ffffff;
   --green: #a6c196;
+  --darkgreen: #677b5b;
+  --neongreen: greenyellow;
   --black: #000000;
 }
 
 body {
   background: var(--grey);
-  color: #ffffff;
+  color: var(--white);
   font-family: "Open Sans";
 }
 
 a {
-  color: #ffffff;
+  color: var(--white);
   text-decoration: none;
 }
 
 a:hover {
-  color: #a6c196;
+  color: var(--green);
 }
 .content {
-  /* max-width: 960px; */
-  /* took this off as it was messing witht the nav and hero! */
   margin: 0 auto;
 }
 
 section {
-  max-width: 960px;
+  max-width: 100%;
+  
 }
 
 nav {
@@ -38,7 +39,6 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border-bottom: 1px solid #ddd; */
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -46,10 +46,7 @@ nav a {
   margin-right: 30px;
   font-weight: 600;
 }
-/* nav .logo {
   
- 
-} */
 
 nav ul {
   display: flex;
@@ -63,8 +60,8 @@ footer {
   text-align: center;
   padding: 30px 0;
   margin-top: 60px;
-  color: #ffffff;
-  border-top: 1px solid #eaeaea;
+  color: var(--white);
+  border-top: 1px solid var(--white);
 }
 
 .not-found {
@@ -72,12 +69,12 @@ footer {
 }
 
 .not-found a {
-  color: #a6c196;
+  color: var(--green);
   text-decoration: underline;
 }
 
 .logocolor {
-  color: white;
+  color: var(--white);
 }
 
 ul {

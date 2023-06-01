@@ -22,8 +22,7 @@
 }
 
 .dashboard_items:hover {
-  border-color: greenyellow;
-  /* we need a var thing for this! */
+  border-color: var(--neongreen);
 }
 
 .btn {
@@ -31,7 +30,7 @@
   width: 150px;
   padding: 8px 0;
   margin: 20px auto;
-  background: #a6c196;
+  background: var(--grey);
   border-radius: 4px;
   color: var(--white);
   text-align: center;
@@ -58,24 +57,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-left: 100px; /* Adjust the left margin as needed */
+  margin-left: 100px; 
   margin-bottom: 14em;
 }
 
 .text {
-  margin-left: 20px; /* Adjust the left margin for the text as needed */
+  margin-left: 20px; 
 }
 
 .checkboxContainer {
-  margin-top: 20px; /* Adjust the top margin as needed */
+  margin-top: 20px; 
 }
 
 .checkboxLabel {
-  margin-bottom: 10px; /* Adjust the bottom margin as needed */
+  margin-bottom: 10px;
 }
 
 .checkbox {
-  margin-right: 10px; /* Adjust the right margin as needed */
+  margin-right: 10px; 
 }
 
 .choosingTent {
@@ -89,15 +88,13 @@
 }
 
 .dropdown {
-  margin-top: 10px; /* Adjust the top margin as needed */
+  margin-top: 10px;
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
-  /* var for this */
-
   border-radius: 4px;
   background-color: var(--white);
-  width: 200px; /* Adjust the width as needed */
+  width: 200px; 
 }
 
 .dropdown:hover {
@@ -112,26 +109,6 @@
 .dropdown option {
   padding: 8px;
 }
-
-/* .nextButton {
-  display: inline-block;
-  margin-left: 30em;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase;
-  color: white;
-  background-color: #4caf50;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-} */
-
-/* .nextButton:hover {
-  background-color: #45a049;
-} */
 
 .h2buyersInfo {
   margin-left: 6em;
@@ -159,16 +136,15 @@
 }
 
 .zipcodeLabel {
-  width: 130px; /* Adjust the width as needed */
+  width: 130px; 
 }
 
 .verticalLine {
-  border-left: 1px solid rgb(255, 255, 255); /* Adjust the color and thickness as desired */
+  border-left: 1px solid rgb(255, 255, 255); 
   position: absolute;
   height: 60%;
   margin-top: 6em;
-  left: 50%; /* Adjust the left position if needed */
-  /* z-index: -1 */ /* Ensure the line is behind the content */
+  left: 50%; 
 }
 
 .h1thankyou {
@@ -208,25 +184,18 @@
 }
 
 .single h2 {
-  /* Add or modify styles for h2 elements */
-  /* For example: */
   font-size: 20px;
   font-weight: bold;
   color: var(--black);
-  /* Add any other desired styles */
 }
 
 .single h3 {
-  /* Add or modify styles for h3 elements */
-  /* For example: */
   font-size: 16px;
-  color: #888888;
-  /* Add any other desired styles */
+  color: var(--grey);
 }
 
 .unavailable {
-  opacity: 0.5; /* Example: reduce the opacity of unavailable campsite */
-  /* Add any additional styles to indicate unavailability */
+  opacity: 0.5; 
 }
 
 .columnContainer {
@@ -235,7 +204,6 @@
   justify-content: space-between;
 }
 
-/* Booking.module.css */
 
 .paymentForm {
   display: grid;
@@ -248,27 +216,10 @@
 }
 
 .inputField {
-  width: 300px; /* Adjust the width as needed */
+  width: 300px; 
   padding: 10px;
   font-size: 16px;
 }
-
-/* .nextButton {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-} */
-
-/* .nextButton:hover {
-  background-color: #45a049;
-} */
-
-/* Add additional styles as needed */
 
 .paymentHeading {
   text-align: center;
@@ -277,7 +228,7 @@
 
 .centeredInput {
   text-align: center;
-  /* Add any additional styling as needed */
+
 }
 
 .paymentForm {
@@ -304,7 +255,7 @@
 }
 
 
-/* do we realle need a new button for this? whhy not just id */
+/* could have been an id on button */
 .backToHomePageButton {
   display: block;
   margin: 0 auto;

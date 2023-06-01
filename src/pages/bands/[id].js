@@ -28,12 +28,9 @@ export const getStaticProps = async (context) => {
   };
 };
 
-
-
-
 const Bio = ({ band }) => {
 
-  const imageURL = band.logo.startsWith("https://") ? band.logo 
+  const logoType = band.logo.includes("https://") ? band.logo 
   : `https://positive-pushy-oatmeal.glitch.me/logos/${band.logo}`;
 
 
@@ -44,16 +41,12 @@ const Bio = ({ band }) => {
   }
 
 
-
   return (
     <div className={styles.all_container} >
       <h1>{band.name}</h1>
 
+      <img src={logoType}  className={styles.band_image} alt="band image" />
       
-
-      <img src={imageURL}  className={styles.band_image} alt="band image" />
-      {/* <img src={band.logo} alt="band image" /> */}
-      {/* the image */}
 
       {members && (
         <ul className={styles.band_members}>
