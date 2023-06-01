@@ -316,3 +316,9 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.paymentSummary {
+  text-align: center;
+  margin-top: 3em;
+  margin-left: 4em;
+}

@@ -49,11 +49,13 @@ const ThankYouPage = () => {
       <div>
         <h1 className={styles.h1thankyou}>Thank You</h1>
         <img className={styles.hornsimage} src="/horns.png" alt="horns" />
-        <p>Card Number: {paymentData.cardNumber}</p>
-        <p>Name on Card: {paymentData.nameOnCard}</p>
-        <p>Expiration Date: {paymentData.expirationDate}</p>
-        <p>CVV: {paymentData.cvv}</p>
-        <p>Shipping Method: {paymentData.shippingMethod}</p>
+        <div className={styles.paymentSummary}>
+          <p>Card Number: {paymentData.cardNumber}</p>
+          <p>Name on Card: {paymentData.nameOnCard}</p>
+          <p>Expiration Date: {paymentData.expirationDate}</p>
+          <p>CVV: {paymentData.cvv}</p>
+          <p>Shipping Method: {paymentData.shippingMethod}</p>
+        </div>
         <Link href="/">
           <div className={styles.backToHomePageButton}>Back To Home Page</div>
         </Link>
