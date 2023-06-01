@@ -23,20 +23,23 @@ const Payment = () => {
     email: "",
     address: "",
     zipcode: "",
+    campsite: "",
   });
 
   useEffect(() => {
     // Retrieve data from URL parameters
-    const { firstname, lastname, email, address, zipcode } = router.query;
+    const { firstName, lastName, email, address, zipcode, campsite } =
+      router.query;
 
     // Update paymentData state with the retrieved data
     setPaymentData((prevData) => ({
       ...prevData,
-      firstname: firstname || "",
-      lastname: lastname || "",
+      firstname: firstName || "",
+      lastname: lastName || "",
       email: email || "",
       address: address || "",
       zipcode: zipcode || "",
+      campsite: campsite || "",
     }));
   }, []);
 
@@ -51,11 +54,10 @@ const Payment = () => {
     e.preventDefault();
 
     try {
-      // Convert the shipping method value to a boolean
       const shippingMethod = paymentData.shippingMethod === "express";
 
-      // Insert the payment data into Supabase
-      const { data, error } = await supabase.from("customers").insert({
+      // Create a separate object for the API request
+      const requestData = {
         cardNumber: paymentData.cardNumber,
         nameOnCard: paymentData.nameOnCard,
         expirationDate: paymentData.expirationDate,
@@ -66,7 +68,13 @@ const Payment = () => {
         email: paymentData.email,
         address: paymentData.address,
         zipcode: paymentData.zipcode,
-      });
+        campsite: paymentData.campsite,
+      };
+
+      // Insert the payment data into Supabase
+      const { data, error } = await supabase
+        .from("customers")
+        .insert(requestData);
 
       if (error) {
         console.log("Error inserting data: ", error.message);
@@ -79,7 +87,7 @@ const Payment = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(paymentData),
+          body: JSON.stringify(requestData), // Use the requestData object here
         });
 
         if (response.ok) {
@@ -130,6 +138,12 @@ const Payment = () => {
             id="zipcode"
             name="zipcode"
             value={paymentData.zipcode}
+          />
+          <input
+            type="hidden"
+            id="campsite"
+            name="campsite"
+            value={paymentData.campsite}
           />
 
           {/* Existing payment form fields */}

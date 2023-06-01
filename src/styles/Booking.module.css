@@ -84,8 +84,8 @@
 
 .hrLine {
   border: none;
-  border-top: 1px solid var(--white); 
-  margin-top: 10px; 
+  border-top: 1px solid var(--white);
+  margin-top: 10px;
 }
 
 .dropdown {
@@ -303,7 +303,6 @@
   padding: 0.5rem;
 }
 
-
 /* do we realle need a new button for this? whhy not just id */
 .backToHomePageButton {
   display: block;
@@ -326,3 +325,8 @@
   margin-top: 3em;
   margin-left: 4em;
 }
+
+/* #firstname,
+#lastname {
+  display: none;
+} */

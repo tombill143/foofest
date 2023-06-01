@@ -1,14 +1,15 @@
 import React from "react";
 import styles from "../../styles/Booking.module.css";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 const Booking = ({ spots }) => {
   const router = useRouter();
   console.log("spots:", spots);
 
-  const handleCampsiteSelection = (area) => {
-    router.push(`/booking/selection?campsite=${area}`);
+  const handleSkipPage = () => {
+    router.push("/booking/selection");
   };
 
   return (
@@ -28,28 +29,19 @@ const Booking = ({ spots }) => {
 
         <div className={styles.item_container}>
           {spots.map((spot) => (
-            <div
-              className={`${styles.dashboard_items} ${
-                spot.available === 0 ? styles.unavailable : ""
-              }`}
-              key={spot.area}
-              onClick={() =>
-                spot.available !== 0 && handleCampsiteSelection(spot.area)
-              }
-            >
-              <div className={styles.single}>
-                <h2>{spot.area}</h2>
-                <h3>
-                  {spot.available} out of {spot.spots} spots available
-                </h3>
-              </div>
+            <div className={styles.dashboard_items} key={spot.area}>
+              <Link href={`/booking/${spot.area}`} passHref>
+                <div className={styles.single}>
+                  <h2>{spot.area}</h2>
+                  <h3>
+                    {spot.available} out of {spot.spots} spots available
+                  </h3>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
-        <div
-          className={styles.btn}
-          onClick={() => router.push("/booking/selection")}
-        >
+        <div className={styles.btn} onClick={handleSkipPage}>
           Skip this page
         </div>
       </div>
