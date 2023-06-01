@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
+import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
 import Head from "next/head";
@@ -6,6 +7,7 @@ import Head from "next/head";
 const BuyersInfo = () => {
   const [formData, setFormData] = useState({
     firstName: "",
+    // do we need to do it like this?: const [name, setName] = useState("");
     lastName: "",
     email: "",
     address: "",
@@ -98,7 +100,7 @@ const BuyersInfo = () => {
                       query: formData,
                     }}
                   >
-                    <button type="submit" className={styles.nextButton}>
+                    <button type="submit" className={styles.btn}>
                       Go To Payment
                     </button>
                   </Link>
@@ -113,3 +115,9 @@ const BuyersInfo = () => {
 };
 
 export default BuyersInfo;
+
+
+
+
+
+

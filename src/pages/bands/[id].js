@@ -30,17 +30,20 @@ export const getStaticProps = async (context) => {
 
 
 
-function BandImages(image){
-
-}
-
-
 
 const Bio = ({ band }) => {
+
+  const imageURL = band.logo.startsWith("https://") ? band.logo 
+  : `https://positive-pushy-oatmeal.glitch.me/logos/${band.logo}`;
+
+
+
   let members = band.members;
   if (members && typeof members === "string") {
     members = members.split(",");
   }
+
+
 
   return (
     <div className={styles.all_container} >
@@ -48,23 +51,23 @@ const Bio = ({ band }) => {
 
       
 
-      <img src={band.logo} alt="band image" />
+      <img src={imageURL}  className={styles.band_image} alt="band image" />
+      {/* <img src={band.logo} alt="band image" /> */}
       {/* the image */}
 
       {members && (
         <ul className={styles.band_members}>
           {members.map((member) => (
-            <li key={member}>{member.trim()}</li>
+            <li key={member}><strong>{member.trim()}</strong></li>
           ))}
         </ul>
       )}
 
-      <p>{band.genre}</p>
-      <p>{band.logoCredits}</p>
-      {/* the weird striing of text */}
+      <p>Music genre: {band.genre}</p>
 
 
-      <p>{band.bio}</p>
+      <p className={styles.band_bio}>{band.bio}</p>
+      <p className={styles.credits}>Photo credits: {band.logoCredits}</p>
     </div>
   );
 };

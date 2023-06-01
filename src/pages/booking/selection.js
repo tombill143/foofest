@@ -156,7 +156,7 @@ const Selection = () => {
               </label>
             </div>
 
-            <div className={styles.nextButton} onClick={handleNext}>
+            <div className={styles.btn} onClick={handleNext}>
               Next
             </div>
           </div>

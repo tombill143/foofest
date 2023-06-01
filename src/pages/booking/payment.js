@@ -200,7 +200,7 @@ const Payment = () => {
           </div>
           {/* ... */}
 
-          <button type="submit" className={styles.nextButton}>
+          <button type="submit" className={styles.btn}>
             Pay Now
           </button>
         </form>
