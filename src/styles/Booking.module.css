@@ -83,8 +83,8 @@
 
 .hrLine {
   border: none;
-  border-top: 1px solid var(--white); 
-  margin-top: 10px; 
+  border-top: 1px solid var(--white);
+  margin-top: 10px;
 }
 
 .dropdown {
@@ -277,3 +277,4 @@
   margin-top: 3em;
   margin-left: 4em;
 }
+

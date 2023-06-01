@@ -1,23 +1,40 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
 import Head from "next/head";
 import Timer from "../componants/Timer"
 
-
 const BuyersInfo = () => {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     firstName: "",
-    // do we need to do it like this?: const [name, setName] = useState("");
     lastName: "",
     email: "",
     address: "",
     zipcode: "",
+    campsite: "",
+    numberOf2ManTents: router.query.numTents || "", // Store numTents data
+    numberOf3ManTents: router.query.numTents3 || "", // Store numTents data
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const query = {
+      ...formData,
+      campsite: router.query.campsite, // Include the campsite from URL query
+    };
+
+    router.push({
+      pathname: "/booking/payment",
+      query,
+    });
   };
 
   return (
@@ -37,10 +54,7 @@ const BuyersInfo = () => {
                 alt="Description of the image"
                 className={styles.image}
               />
-                    <Timer seconds={2000} />
-
-              
-             
+                  <Timer seconds={2000} />
             </div>
           </section>
           <section className={styles.home_hero}>
@@ -48,7 +62,7 @@ const BuyersInfo = () => {
               <div className={styles.checkboxContainer}>
                 <h2 className={styles.h2buyersInfo}>Buyers Info</h2>
 
-                <form className={styles.formContainer}>
+                <form className={styles.formContainer} onSubmit={handleSubmit}>
                   <label>
                     First Name:
                     <input
@@ -99,32 +113,17 @@ const BuyersInfo = () => {
                       className={styles.formInput}
                     />
                   </label>
-                  <Link
-                    href={{
-                      pathname: "/booking/payment",
-                      query: formData,
-                    }}
-                  >
-                    <button type="submit" className={styles.btn}>
-                      Go To Payment
-                    </button>
-                  </Link>
+                  <button type="submit" className={styles.btn}>
+                    Go To Payment
+                  </button>
                 </form>
               </div>
             </div>
           </section>
         </div>
-   
-
       </div>
     </>
   );
 };
 
 export default BuyersInfo;
-
-
-
-
-
-

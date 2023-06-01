@@ -25,39 +25,67 @@ const Payment = () => {
     email: "",
     address: "",
     zipcode: "",
+    campsite: "",
+    numberOf2ManTents: "",
+    numberOf3ManTents: "",
   });
 
   useEffect(() => {
     // Retrieve data from URL parameters
-    const { firstname, lastname, email, address, zipcode } = router.query;
+    const {
+      firstName,
+      lastName,
+      email,
+      address,
+      zipcode,
+      campsite,
+      numTickets,
+      numberOf2ManTents,
+      numberOf3ManTents, // Add numberOf2ManTents to the destructured object
+    } = router.query;
 
     // Update paymentData state with the retrieved data
     setPaymentData((prevData) => ({
       ...prevData,
-      firstname: firstname || "",
-      lastname: lastname || "",
+      firstname: firstName || "",
+      lastname: lastName || "",
       email: email || "",
       address: address || "",
       zipcode: zipcode || "",
+      campsite: campsite || "",
+      numTickets: numTickets || "",
+      numberOf2ManTents: numberOf2ManTents || "", // Assign numberOf2ManTents to the paymentData state
+      numberOf3ManTents: numberOf3ManTents || "", // Assign numberOf2ManTents to the paymentData state
     }));
-  }, []);
+  }, [router.query]);
 
   const handleChange = (e) => {
-    setPaymentData({
-      ...paymentData,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === "numberOf2ManTents") {
+      setPaymentData({
+        ...paymentData,
+        numberOf2ManTents: e.target.value,
+      });
+    } else if (e.target.name === "numberOf3ManTents") {
+      setPaymentData({
+        ...paymentData,
+        numberOf3ManTents: e.target.value,
+      });
+    } else {
+      setPaymentData({
+        ...paymentData,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Convert the shipping method value to a boolean
       const shippingMethod = paymentData.shippingMethod === "express";
 
-      // Insert the payment data into Supabase
-      const { data, error } = await supabase.from("customers").insert({
+      // Create a separate object for the API request
+      const requestData = {
         cardNumber: paymentData.cardNumber,
         nameOnCard: paymentData.nameOnCard,
         expirationDate: paymentData.expirationDate,
@@ -68,7 +96,14 @@ const Payment = () => {
         email: paymentData.email,
         address: paymentData.address,
         zipcode: paymentData.zipcode,
-      });
+        campsite: paymentData.campsite,
+        numberOf2ManTents: paymentData.numberOf2ManTents,
+      };
+
+      // Insert the payment data into Supabase
+      const { data, error } = await supabase
+        .from("customers")
+        .insert(requestData);
 
       if (error) {
         console.log("Error inserting data: ", error.message);
@@ -81,7 +116,7 @@ const Payment = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(paymentData),
+          body: JSON.stringify(requestData), // Use the requestData object here
         });
 
         if (response.ok) {
@@ -108,13 +143,13 @@ const Payment = () => {
           {/* Hidden fields for URL data */}
           <input
             type="hidden"
-            id="firstname"
+            id="firstName"
             name="firstname"
             value={paymentData.firstname}
           />
           <input
             type="hidden"
-            id="lastname"
+            id="lastName"
             name="lastname"
             value={paymentData.lastname}
           />
@@ -136,7 +171,31 @@ const Payment = () => {
             name="zipcode"
             value={paymentData.zipcode}
           />
+          <input
+            type="hidden"
+            id="campsite"
+            name="campsite"
+            value={paymentData.campsite}
+          />
+          <input
+            type="hidden"
+            id="numtickets"
+            name="numtickets"
+            value={paymentData.numberOf2ManTents}
+          />
+          <input
+            type="hidden"
+            id="numTents"
+            name="numberOf2ManTents"
+            value={paymentData.numberOf3ManTents}
+          />
 
+          <input
+            type="hidden"
+            id="numTents3"
+            name="numberOf3ManTents"
+            value={paymentData.numberOf3ManTents}
+          />
           {/* Existing payment form fields */}
           <div className={styles.formGroup}>
             <label htmlFor="cardNumber">Card Number</label>

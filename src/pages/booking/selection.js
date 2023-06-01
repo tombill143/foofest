@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
-import Link from "next/link";
 import Timer from "../componants/Timer";
-
-
 import Head from "next/head";
 
 const Selection = () => {
@@ -12,6 +9,8 @@ const Selection = () => {
   const router = useRouter();
   const { ticketType: initialTicketType, numTickets: initialNumTickets } =
     router.query;
+  const [selectedNumTents, setSelectedNumTents] = useState(0);
+  const [selectedNumTents3, setSelectedNumTents3] = useState(0);
 
   const [selectedNumTickets, setSelectedNumTickets] = useState(
     initialNumTickets ?? ""
@@ -34,6 +33,8 @@ const Selection = () => {
       ticketType: selectedTicketType || "",
       numTickets: selectedNumTickets ? parseInt(selectedNumTickets) : 0,
       campsite: router.query.campsite || "",
+      numTents: selectedNumTents ? parseInt(selectedNumTents) : 0,
+      numTents3: selectedNumTents3 ? parseInt(selectedNumTents3) : 0, // Add numTents3 to the query parameters
     };
 
     // Navigate to the destination page with the query parameters
@@ -53,8 +54,6 @@ const Selection = () => {
         <title>Select Tickets</title>
         <meta name="keywords" content="foofest" />
       </Head>
-     
-
 
       <div className={styles.gridContainer}>
         <section className={styles.home_hero}>
@@ -64,11 +63,8 @@ const Selection = () => {
               alt="Description of the image"
               className={styles.image}
             />
-          
-          <Timer seconds={2000} />
-
+            <Timer seconds={10} /> {/* Add the Timer component here */}
           </div>
-
         </section>
         <section className={styles.home_hero}>
           <div className={styles.rightColumn}>
@@ -117,21 +113,25 @@ const Selection = () => {
               <div className={styles.columnContainer}>
                 <div>
                   <h3 className={styles.choosingTent}>2 Man Tent</h3>
-                  <select className={styles.dropdown}>
+                  <select
+                    className={styles.dropdown}
+                    value={selectedNumTents}
+                    onChange={(e) => setSelectedNumTents(e.target.value)}
+                  >
                     {selectedNumTickets === "1" ||
-                    selectedNumTickets === undefined ? (
+                    selectedNumTickets === "2" ? (
                       <>
-                        <option value="no-tent">0</option>
-                        <option value="tent1">1</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
                       </>
                     ) : (
                       <>
-                        <option value="no-tent">0</option>
-                        <option value="tent1">1</option>
-                        <option value="tent2">2</option>
-                        <option value="tent3">3</option>
-                        <option value="tent4">4</option>
-                        <option value="tent5">5</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                       </>
                     )}
                   </select>
@@ -139,11 +139,16 @@ const Selection = () => {
 
                 <div>
                   <h3 className={styles.choosingTent}>3 Man Tent</h3>
-                  <select className={styles.dropdown} disabled={isTentDisabled}>
-                    <option value="no-tent">0</option>
-                    <option value="tent1">1</option>
-                    <option value="tent2">2</option>
-                    <option value="tent3">3</option>
+                  <select
+                    className={styles.dropdown}
+                    disabled={isTentDisabled}
+                    value={selectedNumTents3} // Add value prop to maintain the selected value
+                    onChange={(e) => setSelectedNumTents3(e.target.value)} // Add onChange event handler to update selectedNumTents3
+                  >
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
                   </select>
                 </div>
               </div>
