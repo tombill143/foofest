@@ -1,21 +1,37 @@
-import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
 import Timer from "../componants/Timer";
+import Head from "next/head";
 
 const Selection = () => {
+  const [isTentDisabled, setIsTentDisabled] = useState(true);
   const router = useRouter();
-  const { ticketType, numTickets } = router.query;
+  const { ticketType: initialTicketType, numTickets: initialNumTickets } =
+    router.query;
+
+  const [selectedNumTickets, setSelectedNumTickets] = useState(
+    initialNumTickets ?? ""
+  );
+
+  const [selectedTicketType, setSelectedTicketType] = useState(
+    initialTicketType ?? ""
+  );
+
+  useEffect(() => {
+    const parsedNumTickets = parseInt(selectedNumTickets);
+    setIsTentDisabled(parsedNumTickets === 1 || parsedNumTickets === 2);
+  }, [selectedNumTickets]);
 
   const handleNext = () => {
-    const destinationPage = `/booking/buyers-info`;
+    const destinationPage = `/booking/buyers_info`;
 
     // Prepare the query parameters to pass to the destination page
     const queryParams = {
-      ticketType: ticketType || "",
-      numTickets: numTickets || "",
+      ticketType: selectedTicketType || "",
+      numTickets: selectedNumTickets ? parseInt(selectedNumTickets) : 0,
+      campsite: router.query.campsite || "",
     };
 
     // Navigate to the destination page with the query parameters
@@ -25,23 +41,9 @@ const Selection = () => {
     });
   };
 
-  const [isTentDisabled, setIsTentDisabled] = useState(true);
-  const [selectedNumTickets, setSelectedNumTickets] = useState("");
-
   useEffect(() => {
-    const parsedNumTickets = parseInt(selectedNumTickets);
-    setIsTentDisabled(parsedNumTickets === 1 || parsedNumTickets === 2);
-  }, [selectedNumTickets]);
-
-  useEffect(() => {
-    const parsedNumTickets = parseInt(numTickets);
-    setIsTentDisabled(parsedNumTickets === 1 || parsedNumTickets === 2);
-    setSelectedNumTickets(numTickets || "");
-  }, [numTickets]);
-
-  useEffect(() => {
-    setIsTentDisabled(true); // Disable the 3-man tent dropdown by default
-  }, []); // Run only once on component mount
+    setIsTentDisabled(true);
+  }, []);
 
   return (
     <>
@@ -66,11 +68,21 @@ const Selection = () => {
             <h1>Choose Ticket Type</h1>
             <div className={styles.checkboxContainer}>
               <label>
-                <input type="radio" name="ticket" value="regular" />
+                <input
+                  type="radio"
+                  name="ticket"
+                  value="regular"
+                  onChange={(e) => setSelectedTicketType(e.target.value)}
+                />
                 Regular Ticket - 799;
               </label>
               <label>
-                <input type="radio" name="ticket" value="vip" />
+                <input
+                  type="radio"
+                  name="ticket"
+                  value="vip"
+                  onChange={(e) => setSelectedTicketType(e.target.value)}
+                />
                 VIP Ticket - 1299;
               </label>
 
@@ -99,14 +111,25 @@ const Selection = () => {
                 <div>
                   <h3 className={styles.choosingTent}>2 Man Tent</h3>
                   <select className={styles.dropdown}>
-                    <option value="no-tent">0</option>
-                    <option value="tent1">1</option>
-                    <option value="tent2">2</option>
-                    <option value="tent3">3</option>
-                    <option value="tent4">4</option>
-                    <option value="tent5">5</option>
+                    {selectedNumTickets === "1" ||
+                    selectedNumTickets === undefined ? (
+                      <>
+                        <option value="no-tent">0</option>
+                        <option value="tent1">1</option>
+                      </>
+                    ) : (
+                      <>
+                        <option value="no-tent">0</option>
+                        <option value="tent1">1</option>
+                        <option value="tent2">2</option>
+                        <option value="tent3">3</option>
+                        <option value="tent4">4</option>
+                        <option value="tent5">5</option>
+                      </>
+                    )}
                   </select>
                 </div>
+
                 <div>
                   <h3 className={styles.choosingTent}>3 Man Tent</h3>
                   <select className={styles.dropdown} disabled={isTentDisabled}>
@@ -134,9 +157,9 @@ const Selection = () => {
               </label>
             </div>
 
-            <Link href="/booking/buyers_info">
-              <div className={styles.nextButton}>Next</div>
-            </Link>
+            <div className={styles.btn} onClick={handleNext}>
+              Next
+            </div>
           </div>
         </section>
       </div>
