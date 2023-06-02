@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
 import Head from "next/head";
-import Timer from "../componants/Timer";
+import Timer from "../componants/Timer"
 
 const BuyersInfo = () => {
   const router = useRouter();
@@ -16,9 +16,10 @@ const BuyersInfo = () => {
     zipcode: "",
     campsite: "",
     numberOf2ManTents: router.query.numTents || "", // storiinng number of tents data
-    numberOf3ManTents: router.query.numTents3 || "",
+    numberOf3ManTents: router.query.numTents3 || "", 
   });
 
+ 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -54,9 +55,9 @@ const BuyersInfo = () => {
                 alt="image of a festival"
                 className={styles.image}
               />
-              <Timer seconds={2000} />
+                  <Timer seconds={2000} />
             </div>
-          </section>
+            </section>
           <section className={styles.home_hero}>
             <div className={styles.rightColumn}>
               <div className={styles.checkboxContainer}>
