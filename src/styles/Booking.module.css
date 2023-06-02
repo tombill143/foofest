@@ -1,0 +1,282 @@
+.item_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.dashboard_items {
+  background-color: var(--white);
+  border: 2px;
+  margin: 1rem;
+  border-style: solid;
+  border-color: var(--black);
+  padding: 2rem;
+}
+
+.dashboard_items a {
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard_items:hover {
+  border-color: var(--neongreen);
+}
+
+.btn {
+  display: block;
+  width: 150px;
+  padding: 8px 0;
+  margin: 20px auto;
+  background: var(--grey);
+  border-radius: 4px;
+  color: var(--white);
+  text-align: center;
+}
+
+.gridContainer {
+  padding-top: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftColumn {
+  margin-bottom: 6em;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 100px;
+  margin-bottom: 14em;
+}
+
+.text {
+  margin-left: 20px;
+}
+
+.checkboxContainer {
+  margin-top: 20px;
+}
+
+.checkboxLabel {
+  margin-bottom: 10px;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.choosingTent {
+  margin-top: 2em;
+}
+
+.hrLine {
+  border: none;
+  border-top: 1px solid var(--white);
+  margin-top: 10px;
+}
+
+.dropdown {
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: var(--white);
+  width: 200px;
+}
+
+.dropdown:hover {
+  border-color: #888;
+}
+
+.dropdown:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.dropdown option {
+  padding: 8px;
+}
+
+.h2buyersInfo {
+  margin-left: 6em;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formContainer label {
+  margin-bottom: 1rem;
+  margin-left: 9em;
+}
+
+.formContainer input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.formContainer button {
+  margin-top: 1rem;
+}
+
+.zipcodeLabel {
+  width: 130px;
+}
+
+.verticalLine {
+  border-left: 1px solid rgb(255, 255, 255);
+  position: absolute;
+  height: 60%;
+  margin-top: 6em;
+  left: 50%;
+}
+
+.h1thankyou {
+  margin-top: 2em;
+  text-align: center;
+}
+
+.hornsimage {
+  margin-top: 1em;
+  margin-left: 38%;
+}
+
+.thankyoubutton {
+  display: inline-block;
+  margin-left: 40em;
+  margin-top: 3em;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--white);
+  background-color: var(--greem);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.girlimage {
+  margin: auto 0;
+  filter: drop-shadow(30px 10px 4px var(--black));
+}
+
+.single {
+  cursor: pointer;
+}
+
+.single h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--black);
+}
+
+.single h3 {
+  font-size: 16px;
+  color: var(--grey);
+}
+
+.unavailable {
+  opacity: 0.5;
+}
+
+.columnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.paymentForm {
+  display: grid;
+  margin-top: 3em;
+  justify-content: center;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.inputField {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.paymentHeading {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.centeredInput {
+  text-align: center;
+}
+
+.paymentForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paymentForm .formGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.paymentForm label {
+  margin-bottom: 0.5rem;
+}
+
+.paymentForm input,
+.paymentForm select {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+/* could have been an id on button */
+.backToHomePageButton {
+  display: block;
+  margin: 0 auto;
+  width: 12%;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  padding: 8px 18px;
+  font-size: 16px;
+  background-color: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.paymentSummary {
+  text-align: center;
+  margin-top: 3em;
+  margin-left: 4em;
+}
+
+.btn {
+  border-radius: 35px;
+  cursor: pointer;
+  background-color: var(--green);
+}
