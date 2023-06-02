@@ -28,12 +28,13 @@ const Selection = () => {
   const handleNext = () => {
     const destinationPage = `/booking/buyers_info`;
 
+    
     const queryParams = {
       ticketType: selectedTicketType || "",
       numTickets: selectedNumTickets ? parseInt(selectedNumTickets) : 0,
       campsite: router.query.campsite || "",
       numTents: selectedNumTents ? parseInt(selectedNumTents) : 0,
-      numTents3: selectedNumTents3 ? parseInt(selectedNumTents3) : 0,
+      numTents3: selectedNumTents3 ? parseInt(selectedNumTents3) : 0, 
     };
 
     // Navigate to the destination page with the query parameters
