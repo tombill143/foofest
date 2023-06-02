@@ -3,7 +3,8 @@ import styles from "../../styles/Booking.module.css";
 import Head from "next/head";
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
-import Timer from "../componants/Timer";
+import Timer from "../componants/Timer"
+
 
 const supabase = createClient(
   "https://ajpnubqenhfdlqfvcruv.supabase.co",
@@ -39,7 +40,7 @@ const Payment = () => {
       campsite,
       numTickets,
       numberOf2ManTents,
-      numberOf3ManTents,
+      numberOf3ManTents, 
     } = router.query;
 
     // Update paymentData state with the retrieved data
@@ -52,8 +53,8 @@ const Payment = () => {
       zipcode: zipcode || "",
       campsite: campsite || "",
       numTickets: numTickets || "",
-      numberOf2ManTents: numberOf2ManTents || "",
-      numberOf3ManTents: numberOf3ManTents || "",
+      numberOf2ManTents: numberOf2ManTents || "", 
+      numberOf3ManTents: numberOf3ManTents || "", 
     }));
   }, [router.query]);
 
@@ -133,8 +134,8 @@ const Payment = () => {
     <>
       <Head></Head>
       <div>
-        <Timer seconds={2000} />
-        <h1 className={styles.paymentHeading}>Payment Details</h1>
+      <Timer seconds={2000} />
+      <h1 className={styles.paymentHeading}>Payment Details</h1>
         <form onSubmit={handleSubmit} className={styles.paymentForm}>
           {/* hidden fields for URL data */}
           <input
@@ -215,7 +216,7 @@ const Payment = () => {
               value={paymentData.nameOnCard}
               onChange={handleChange}
               required
-              className={`${styles.inputField} ${styles.centeredInput}`}
+              className={`${styles.inputField} ${styles.centeredInput}`} 
             />
           </div>
           <div className={styles.formGroup}>
@@ -258,6 +259,7 @@ const Payment = () => {
               <option value="express">Express Shipping</option>
             </select>
           </div>
+     
 
           <button type="submit" className={styles.btn}>
             Pay Now
