@@ -57,16 +57,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-left: 100px; 
+  margin-left: 100px;
   margin-bottom: 14em;
 }
 
 .text {
-  margin-left: 20px; 
+  margin-left: 20px;
 }
 
 .checkboxContainer {
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 
 .checkboxLabel {
@@ -74,7 +74,7 @@
 }
 
 .checkbox {
-  margin-right: 10px; 
+  margin-right: 10px;
 }
 
 .choosingTent {
@@ -94,7 +94,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: var(--white);
-  width: 200px; 
+  width: 200px;
 }
 
 .dropdown:hover {
@@ -136,15 +136,15 @@
 }
 
 .zipcodeLabel {
-  width: 130px; 
+  width: 130px;
 }
 
 .verticalLine {
-  border-left: 1px solid rgb(255, 255, 255); 
+  border-left: 1px solid rgb(255, 255, 255);
   position: absolute;
   height: 60%;
   margin-top: 6em;
-  left: 50%; 
+  left: 50%;
 }
 
 .h1thankyou {
@@ -195,7 +195,7 @@
 }
 
 .unavailable {
-  opacity: 0.5; 
+  opacity: 0.5;
 }
 
 .columnContainer {
@@ -203,7 +203,6 @@
   flex-direction: row;
   justify-content: space-between;
 }
-
 
 .paymentForm {
   display: grid;
@@ -216,7 +215,7 @@
 }
 
 .inputField {
-  width: 300px; 
+  width: 300px;
   padding: 10px;
   font-size: 16px;
 }
@@ -228,7 +227,6 @@
 
 .centeredInput {
   text-align: center;
-
 }
 
 .paymentForm {
@@ -253,7 +251,6 @@
   width: 100%;
   padding: 0.5rem;
 }
-
 
 /* could have been an id on button */
 .backToHomePageButton {
@@ -284,3 +281,7 @@
   background-color: var(--green);
 }
 
+.disabled {
+  background-color: gray;
+  color: white;
+}

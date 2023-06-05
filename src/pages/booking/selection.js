@@ -11,14 +11,13 @@ const Selection = () => {
     router.query;
   const [selectedNumTents, setSelectedNumTents] = useState(0);
   const [selectedNumTents3, setSelectedNumTents3] = useState(0);
-
   const [selectedNumTickets, setSelectedNumTickets] = useState(
     initialNumTickets ?? ""
   );
-
   const [selectedTicketType, setSelectedTicketType] = useState(
     initialTicketType ?? ""
   );
+  const [isRadioSelected, setIsRadioSelected] = useState(false);
 
   useEffect(() => {
     const parsedNumTickets = parseInt(selectedNumTickets);
@@ -28,13 +27,12 @@ const Selection = () => {
   const handleNext = () => {
     const destinationPage = `/booking/buyers_info`;
 
-    
     const queryParams = {
       ticketType: selectedTicketType || "",
       numTickets: selectedNumTickets ? parseInt(selectedNumTickets) : 0,
       campsite: router.query.campsite || "",
       numTents: selectedNumTents ? parseInt(selectedNumTents) : 0,
-      numTents3: selectedNumTents3 ? parseInt(selectedNumTents3) : 0, 
+      numTents3: selectedNumTents3 ? parseInt(selectedNumTents3) : 0,
     };
 
     // Navigate to the destination page with the query parameters
@@ -45,7 +43,10 @@ const Selection = () => {
   };
 
   useEffect(() => {
-    setIsTentDisabled(true);
+    const btnNxt = document.getElementById("btnNxt");
+    btnNxt.onclick = function () {
+      handleNext();
+    };
   }, []);
 
   return (
@@ -75,7 +76,10 @@ const Selection = () => {
                   type="radio"
                   name="ticket"
                   value="regular"
-                  onChange={(e) => setSelectedTicketType(e.target.value)}
+                  onChange={(e) => {
+                    setSelectedTicketType(e.target.value);
+                    setIsRadioSelected(true);
+                  }}
                 />
                 Regular Ticket - 799;
               </label>
@@ -84,7 +88,10 @@ const Selection = () => {
                   type="radio"
                   name="ticket"
                   value="vip"
-                  onChange={(e) => setSelectedTicketType(e.target.value)}
+                  onChange={(e) => {
+                    setSelectedTicketType(e.target.value);
+                    setIsRadioSelected(true);
+                  }}
                 />
                 VIP Ticket - 1299;
               </label>
@@ -169,9 +176,16 @@ const Selection = () => {
               </label>
             </div>
 
-            <div className={styles.btn} onClick={handleNext}>
+            <button
+              className={`${styles.btn} ${
+                isRadioSelected ? "" : styles.disabled
+              }`}
+              onClick={handleNext}
+              id="btnNxt"
+              disabled={!isRadioSelected}
+            >
               Next
-            </div>
+            </button>
           </div>
         </section>
       </div>
