@@ -1,11 +1,117 @@
+.all_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem 3rem 0 3rem;
+}
+
+/* ___________________ band line up ______________ */
+
 .single {
   padding: 2px 16px;
-  background-color: #a6c196;
+  background-color: var(--green);
   display: block;
   margin: 20px 10px;
-  border-left: 8px solid #fff;
+
 }
 
 .single:hover {
-  border-left: 8px solid #c7faaa;
+  background-color: #c7faaa;
 }
+
+.squarecontainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.squarecontainer a {
+  margin: 0;
+  width: 13rem;
+  height: 13rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.squarecontainer h3 {
+  margin: 0;
+  
+}
+
+
+/* ___________________ schedule page _____________ */
+
+.day_schedule{
+  margin-bottom: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.thead_schedule{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.tr{
+  display: flex;
+  border: solid var(--white) 2px;
+}
+
+.td{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.each_band{
+ 
+
+  background-color: var(--black);
+  height: 20vh;
+  width: 20vw;
+  line-break:normal;
+  border-radius: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.break_act{
+  background-color: grey;
+  height: 10vh;
+  width: 20vw;
+  
+}
+
+
+/* ___________________ band [id] page______________ */
+.band_members{
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 0;
+}
+
+.band_image{
+  width: 30vw;
+}
+
+.credits{
+  font-size: 0.6rem;
+}
+
+.band_bio{
+  text-align: justify;
+}
+
+
+

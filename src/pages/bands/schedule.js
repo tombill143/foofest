@@ -22,6 +22,7 @@ const BandsSchedule = ({ bands }) => {
       <div className={styles.day_schedule}>
         <h2>MONDAY</h2>
         <table className={styles.schedule_table}>
+
           <tbody className={styles.tbody_schedule}>
             <tr className={styles.tr}>
               <td className={styles.td}>
@@ -541,3 +542,4 @@ const BandsSchedule = ({ bands }) => {
 };
 
 export default BandsSchedule;
+

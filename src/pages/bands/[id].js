@@ -1,3 +1,5 @@
+import styles from "../../styles/Bands.module.css";
+
 export const getStaticPaths = async () => {
   const res = await fetch("https://positive-pushy-oatmeal.glitch.me/bands");
   const data = await res.json();
@@ -27,25 +29,38 @@ export const getStaticProps = async (context) => {
 };
 
 const Bio = ({ band }) => {
+
+  const logoType = band.logo.includes("https://") ? band.logo 
+  : `https://positive-pushy-oatmeal.glitch.me/logos/${band.logo}`;
+
+
+
   let members = band.members;
   if (members && typeof members === "string") {
     members = members.split(",");
   }
 
+
   return (
-    <div>
+    <div className={styles.all_container} >
       <h1>{band.name}</h1>
+
+      <img src={logoType}  className={styles.band_image} alt="band image" />
+      
+
       {members && (
-        <ul>
+        <ul className={styles.band_members}>
           {members.map((member) => (
-            <li key={member}>{member.trim()}</li>
+            <li key={member}><strong>{member.trim()}</strong></li>
           ))}
         </ul>
       )}
-      <p>{band.genre}</p>
-      <p>{band.logoCredits}</p>
-      {band.logo && <img src={band.logo} alt={`${band.name} logo`} />}
-      <p>{band.bio}</p>
+
+      <p>Music genre: {band.genre}</p>
+
+
+      <p className={styles.band_bio}>{band.bio}</p>
+      <p className={styles.credits}>Photo credits: {band.logoCredits}</p>
     </div>
   );
 };
