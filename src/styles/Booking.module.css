@@ -285,3 +285,10 @@
   background-color: gray;
   color: white;
 }
+
+.btn:disabled {
+  /* Styles for disabled state */
+  background-color: #d3d3d3;
+  color: #aaaaaa;
+  cursor: not-allowed;
+}

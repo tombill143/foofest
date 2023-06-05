@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
 import Head from "next/head";
-import Timer from "../componants/Timer"
+import Timer from "../componants/Timer";
 
 const BuyersInfo = () => {
   const router = useRouter();
@@ -15,11 +15,12 @@ const BuyersInfo = () => {
     address: "",
     zipcode: "",
     campsite: "",
-    numberOf2ManTents: router.query.numTents || "", // storiinng number of tents data
-    numberOf3ManTents: router.query.numTents3 || "", 
+    numberOf2ManTents: router.query.numTents || "",
+    numberOf3ManTents: router.query.numTents3 || "",
   });
 
- 
+  const [isFormValid, setIsFormValid] = useState(false);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -27,15 +28,28 @@ const BuyersInfo = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const query = {
-      ...formData,
-      campsite: router.query.campsite, // include the campsite from URL query
-    };
+    if (isFormValid) {
+      const query = {
+        ...formData,
+        campsite: router.query.campsite,
+      };
 
-    router.push({
-      pathname: "/booking/payment",
-      query,
-    });
+      router.push({
+        pathname: "/booking/payment",
+        query,
+      });
+    }
+  };
+
+  const validateForm = () => {
+    const { firstName, lastName, email, address, zipcode } = formData;
+    setIsFormValid(
+      firstName.trim() !== "" &&
+        lastName.trim() !== "" &&
+        email.trim() !== "" &&
+        address.trim() !== "" &&
+        zipcode.trim() !== ""
+    );
   };
 
   return (
@@ -55,9 +69,9 @@ const BuyersInfo = () => {
                 alt="image of a festival"
                 className={styles.image}
               />
-                  <Timer seconds={2000} />
+              <Timer seconds={2000} />
             </div>
-            </section>
+          </section>
           <section className={styles.home_hero}>
             <div className={styles.rightColumn}>
               <div className={styles.checkboxContainer}>
@@ -72,6 +86,7 @@ const BuyersInfo = () => {
                       value={formData.firstName}
                       onChange={handleChange}
                       className={styles.formInput}
+                      onBlur={validateForm} // Add onBlur event handler to validate the form
                     />
                   </label>
                   <label>
@@ -82,6 +97,7 @@ const BuyersInfo = () => {
                       value={formData.lastName}
                       onChange={handleChange}
                       className={styles.formInput}
+                      onBlur={validateForm} // Add onBlur event handler to validate the form
                     />
                   </label>
                   <label>
@@ -92,6 +108,7 @@ const BuyersInfo = () => {
                       value={formData.address}
                       onChange={handleChange}
                       className={styles.formInput}
+                      onBlur={validateForm} // Add onBlur event handler to validate the form
                     />
                   </label>
                   <label>
@@ -102,6 +119,7 @@ const BuyersInfo = () => {
                       value={formData.email}
                       onChange={handleChange}
                       className={styles.formInput}
+                      onBlur={validateForm} // Add onBlur event handler to validate the form
                     />
                   </label>
                   <label className={styles.zipcodeLabel}>
@@ -112,9 +130,14 @@ const BuyersInfo = () => {
                       value={formData.zipcode}
                       onChange={handleChange}
                       className={styles.formInput}
+                      onBlur={validateForm} // Add onBlur event handler to validate the form
                     />
                   </label>
-                  <button type="submit" className={styles.btn}>
+                  <button
+                    type="submit"
+                    className={styles.btn}
+                    disabled={!isFormValid} // Disable the button if the form is not valid
+                  >
                     Go To Payment
                   </button>
                 </form>
