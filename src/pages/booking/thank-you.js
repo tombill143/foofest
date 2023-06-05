@@ -64,4 +64,8 @@ const ThankYouPage = () => {
   );
 };
 
+<<<<<<< HEAD
 export default ThankYouPage;
+=======
+export default ThankYouPage;
+>>>>>>> tom-branch

@@ -1,39 +1,67 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap");
+
+:root {
+  --grey: #4a4949;
+  --white: #ffffff;
+  --green: #a6c196;
+  --darkgreen: #677b5b;
+  --neongreen: greenyellow;
+  --black: #000000;
+}
 
 body {
-  background: #4a4949;
-  color: #ffffff;
-  font-family: "Nunito";
+  background: var(--grey);
+  color: var(--white);
+  font-family: "Open Sans";
 }
+
 a {
-  color: #ffffff;
+  color: var(--white);
   text-decoration: none;
 }
+
+a:hover {
+  color: var(--green);
+}
 .content {
-  max-width: 960px;
   margin: 0 auto;
 }
+
+section {
+  max-width: 100%;
+  
+}
+
 nav {
-  margin: 10px auto 80px;
-  padding: 10px 0;
+  padding: 10px 40px 10px 40px;
+
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  border-bottom: 1px solid #ddd;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
 }
+
 nav a {
-  margin-left: 12px;
+  margin-right: 30px;
+  font-weight: 600;
 }
-nav .logo {
-  margin-right: auto;
+  
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
+
 footer {
   display: block;
   text-align: center;
   padding: 30px 0;
   margin-top: 60px;
-  color: #ffffff;
-  border-top: 1px solid #eaeaea;
+  color: var(--white);
+  border-top: 1px solid var(--white);
 }
 
 .not-found {
@@ -41,10 +69,27 @@ footer {
 }
 
 .not-found a {
-  color: #a6c196;
+  color: var(--green);
   text-decoration: underline;
+}
+
+.logocolor {
+  color: var(--white);
 }
 
 ul {
   list-style: none;
+}
+
+.btn {
+  border-radius: 35px;
+  cursor: pointer;
+}
+
+label {
+  margin-right: 2em;
+}
+
+select {
+  margin-bottom: 3em;
 }

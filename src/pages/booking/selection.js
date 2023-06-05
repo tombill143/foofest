@@ -179,4 +179,8 @@ const Selection = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Selection;
+=======
+export default Selection;
+>>>>>>> tom-branch
