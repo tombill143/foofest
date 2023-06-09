@@ -46,16 +46,31 @@ const BuyersInfo = () => {
       [e.target.name]: e.target.value,
     };
     setTicketHolderInfo(updatedTicketHolders);
+
+    validateForm(); // Trigger form validation when ticket holder fields change
   };
 
   const validateForm = () => {
     const { firstName, lastName, email, address, zipcode } = buyerInfo;
+
+    let isTicketHoldersValid = true;
+    if (ticketHolderInfo.length > 0) {
+      isTicketHoldersValid = ticketHolderInfo.every(
+        (ticketHolder) =>
+          ticketHolder.firstName && // Check if firstName property exists
+          ticketHolder.lastName && // Check if lastName property exists
+          ticketHolder.firstName.trim() !== "" &&
+          ticketHolder.lastName.trim() !== ""
+      );
+    }
+
     setIsFormValid(
       firstName.trim() !== "" &&
         lastName.trim() !== "" &&
         email.trim() !== "" &&
         address.trim() !== "" &&
-        zipcode.trim() !== ""
+        zipcode.trim() !== "" &&
+        isTicketHoldersValid
     );
   };
 
