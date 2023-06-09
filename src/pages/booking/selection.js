@@ -12,7 +12,7 @@ const Selection = () => {
   const [selectedNumTents, setSelectedNumTents] = useState(0);
   const [selectedNumTents3, setSelectedNumTents3] = useState(0);
   const [selectedNumTickets, setSelectedNumTickets] = useState(
-    initialNumTickets ?? ""
+    initialNumTickets ? parseInt(initialNumTickets) : 1
   );
   const [selectedTicketType, setSelectedTicketType] = useState(
     initialTicketType ?? ""
@@ -20,8 +20,7 @@ const Selection = () => {
   const [isRadioSelected, setIsRadioSelected] = useState(false);
 
   useEffect(() => {
-    const parsedNumTickets = parseInt(selectedNumTickets);
-    setIsTentDisabled(parsedNumTickets === 1 || parsedNumTickets === 2);
+    setIsTentDisabled(selectedNumTickets === 1 || selectedNumTickets === 2);
   }, [selectedNumTickets]);
 
   const handleNext = () => {
@@ -29,10 +28,10 @@ const Selection = () => {
 
     const queryParams = {
       ticketType: selectedTicketType || "",
-      numTickets: selectedNumTickets ? parseInt(selectedNumTickets) : 0,
+      numTickets: selectedNumTickets,
       campsite: router.query.campsite || "",
-      numTents: selectedNumTents ? parseInt(selectedNumTents) : 0,
-      numTents3: selectedNumTents3 ? parseInt(selectedNumTents3) : 0,
+      numTents: selectedNumTents,
+      numTents3: selectedNumTents3,
     };
 
     // Navigate to the destination page with the query parameters
@@ -100,8 +99,10 @@ const Selection = () => {
               <hr className={styles.hrLine} />
               <select
                 className={styles.dropdown}
-                value={selectedNumTickets}
-                onChange={(e) => setSelectedNumTickets(e.target.value)}
+                value={selectedNumTickets.toString()}
+                onChange={(e) =>
+                  setSelectedNumTickets(parseInt(e.target.value))
+                }
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -122,11 +123,12 @@ const Selection = () => {
                   <h3 className={styles.choosingTent}>2 Man Tent</h3>
                   <select
                     className={styles.dropdown}
-                    value={selectedNumTents}
-                    onChange={(e) => setSelectedNumTents(e.target.value)}
+                    value={selectedNumTents.toString()}
+                    onChange={(e) =>
+                      setSelectedNumTents(parseInt(e.target.value))
+                    }
                   >
-                    {selectedNumTickets === "1" ||
-                    selectedNumTickets === "2" ? (
+                    {selectedNumTickets === 1 || selectedNumTickets === 2 ? (
                       <>
                         <option value="0">0</option>
                         <option value="1">1</option>
@@ -149,8 +151,10 @@ const Selection = () => {
                   <select
                     className={styles.dropdown}
                     disabled={isTentDisabled}
-                    value={selectedNumTents3} // Add value prop to maintain the selected value
-                    onChange={(e) => setSelectedNumTents3(e.target.value)} // Add onChange event handler to update selectedNumTents3
+                    value={selectedNumTents3.toString()}
+                    onChange={(e) =>
+                      setSelectedNumTents3(parseInt(e.target.value))
+                    }
                   >
                     <option value="0">0</option>
                     <option value="1">1</option>
