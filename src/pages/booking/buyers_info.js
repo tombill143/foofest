@@ -91,7 +91,7 @@ const BuyersInfo = () => {
               <img
                 src="/selectionimg.JPG"
                 alt="image of a festival"
-                className={styles.image}
+                className={styles.festimage}
               />
               <Timer seconds={2000} />
             </div>
@@ -169,6 +169,7 @@ const BuyersInfo = () => {
                           value={ticketHolder.firstName || ""}
                           onChange={(e) => handleTicketHolderChange(index, e)}
                           className={styles.formInput}
+                          onBlur={validateForm}
                         />
                       </label>
                       <label>
@@ -179,6 +180,7 @@ const BuyersInfo = () => {
                           value={ticketHolder.lastName || ""}
                           onChange={(e) => handleTicketHolderChange(index, e)}
                           className={styles.formInput}
+                          onBlur={validateForm}
                         />
                       </label>
                     </div>

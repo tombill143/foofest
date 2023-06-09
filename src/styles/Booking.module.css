@@ -118,17 +118,20 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
 }
 
-.formContainer label {
+.formContainer label,
+.buyerInfoContainer label {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 1rem;
-  margin-left: 9em;
 }
 
-.formContainer input {
+.formContainer input,
+.buyerInfoContainer input {
   width: 100%;
   padding: 0.5rem;
-  margin-top: 0.5rem;
 }
 
 .formContainer button {
@@ -291,4 +294,26 @@
   background-color: #d3d3d3;
   color: #aaaaaa;
   cursor: not-allowed;
+}
+
+.buyerInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.buyerInfoContainer h3 {
+  margin-top: 1rem;
+}
+
+.ticketHolderFormInput {
+  width: 100%;
+}
+
+.festimage {
+  margin-top: -46em;
+  margin-right: 16em;
+  width: 100%; /* Adjust the width as needed */
+  max-width: 400px; /* Adjust the max-width as needed */
 }
