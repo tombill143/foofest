@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
@@ -8,21 +8,19 @@ import Timer from "../componants/Timer";
 const BuyersInfo = () => {
   const router = useRouter();
 
-  const [formData, setFormData] = useState({
+  const [buyerInfo, setBuyerInfo] = useState({
     firstName: "",
     lastName: "",
     email: "",
     address: "",
     zipcode: "",
-    campsite: "",
-    numberOf2ManTents: router.query.numTents || "",
-    numberOf3ManTents: router.query.numTents3 || "",
   });
 
+  const [ticketHolderInfo, setTicketHolderInfo] = useState([]);
   const [isFormValid, setIsFormValid] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setBuyerInfo({ ...buyerInfo, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -30,8 +28,8 @@ const BuyersInfo = () => {
 
     if (isFormValid) {
       const query = {
-        ...formData,
-        campsite: router.query.campsite,
+        buyerInfo,
+        ticketHolderInfo,
       };
 
       router.push({
@@ -41,8 +39,17 @@ const BuyersInfo = () => {
     }
   };
 
+  const handleTicketHolderChange = (index, e) => {
+    const updatedTicketHolders = [...ticketHolderInfo];
+    updatedTicketHolders[index] = {
+      ...updatedTicketHolders[index],
+      [e.target.name]: e.target.value,
+    };
+    setTicketHolderInfo(updatedTicketHolders);
+  };
+
   const validateForm = () => {
-    const { firstName, lastName, email, address, zipcode } = formData;
+    const { firstName, lastName, email, address, zipcode } = buyerInfo;
     setIsFormValid(
       firstName.trim() !== "" &&
         lastName.trim() !== "" &&
@@ -52,10 +59,27 @@ const BuyersInfo = () => {
     );
   };
 
+  useEffect(() => {
+    validateForm();
+  }, [buyerInfo]);
+
+  useEffect(() => {
+    const { numTickets } = router.query;
+
+    if (numTickets) {
+      const numTicketsValue = parseInt(numTickets);
+
+      if (numTicketsValue > 1) {
+        const initialTicketHolders = Array(numTicketsValue - 1).fill({});
+        setTicketHolderInfo(initialTicketHolders);
+      }
+    }
+  }, []);
+
   return (
     <>
       <Head>
-        <title>Customer Information</title>
+        <title>Buyers Information</title>
         <meta name="keywords" content="foofest" />
       </Head>
       <div className={styles.bookingContainer}>
@@ -75,7 +99,7 @@ const BuyersInfo = () => {
           <section className={styles.home_hero}>
             <div className={styles.rightColumn}>
               <div className={styles.checkboxContainer}>
-                <h2 className={styles.h2buyersInfo}>Buyers Info</h2>
+                <h2 className={styles.h2buyersInfo}>Buyer's Info</h2>
 
                 <form className={styles.formContainer} onSubmit={handleSubmit}>
                   <label>
@@ -83,10 +107,10 @@ const BuyersInfo = () => {
                     <input
                       type="text"
                       name="firstName"
-                      value={formData.firstName}
+                      value={buyerInfo.firstName}
                       onChange={handleChange}
                       className={styles.formInput}
-                      onBlur={validateForm} // Add onBlur event handler to validate the form
+                      onBlur={validateForm}
                     />
                   </label>
                   <label>
@@ -94,10 +118,10 @@ const BuyersInfo = () => {
                     <input
                       type="text"
                       name="lastName"
-                      value={formData.lastName}
+                      value={buyerInfo.lastName}
                       onChange={handleChange}
                       className={styles.formInput}
-                      onBlur={validateForm} // Add onBlur event handler to validate the form
+                      onBlur={validateForm}
                     />
                   </label>
                   <label>
@@ -105,10 +129,10 @@ const BuyersInfo = () => {
                     <input
                       type="text"
                       name="address"
-                      value={formData.address}
+                      value={buyerInfo.address}
                       onChange={handleChange}
                       className={styles.formInput}
-                      onBlur={validateForm} // Add onBlur event handler to validate the form
+                      onBlur={validateForm}
                     />
                   </label>
                   <label>
@@ -116,10 +140,10 @@ const BuyersInfo = () => {
                     <input
                       type="text"
                       name="email"
-                      value={formData.email}
+                      value={buyerInfo.email}
                       onChange={handleChange}
                       className={styles.formInput}
-                      onBlur={validateForm} // Add onBlur event handler to validate the form
+                      onBlur={validateForm}
                     />
                   </label>
                   <label className={styles.zipcodeLabel}>
@@ -127,16 +151,43 @@ const BuyersInfo = () => {
                     <input
                       type="text"
                       name="zipcode"
-                      value={formData.zipcode}
+                      value={buyerInfo.zipcode}
                       onChange={handleChange}
                       className={styles.formInput}
-                      onBlur={validateForm} // Add onBlur event handler to validate the form
+                      onBlur={validateForm}
                     />
                   </label>
+
+                  {ticketHolderInfo.map((ticketHolder, index) => (
+                    <div key={index} className={styles.buyerInfoContainer}>
+                      <h3>Ticket Holder {index + 2}</h3>
+                      <label>
+                        First Name:
+                        <input
+                          type="text"
+                          name="firstName"
+                          value={ticketHolder.firstName || ""}
+                          onChange={(e) => handleTicketHolderChange(index, e)}
+                          className={styles.formInput}
+                        />
+                      </label>
+                      <label>
+                        Last Name:
+                        <input
+                          type="text"
+                          name="lastName"
+                          value={ticketHolder.lastName || ""}
+                          onChange={(e) => handleTicketHolderChange(index, e)}
+                          className={styles.formInput}
+                        />
+                      </label>
+                    </div>
+                  ))}
+
                   <button
                     type="submit"
                     className={styles.btn}
-                    disabled={!isFormValid} // Disable the button if the form is not valid
+                    disabled={!isFormValid}
                   >
                     Go To Payment
                   </button>
