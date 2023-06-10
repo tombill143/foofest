@@ -3,8 +3,7 @@ import styles from "../../styles/Booking.module.css";
 import Head from "next/head";
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
-import Timer from "../componants/Timer"
-
+import Timer from "../componants/Timer";
 
 const supabase = createClient(
   "https://ajpnubqenhfdlqfvcruv.supabase.co",
@@ -28,6 +27,9 @@ const Payment = () => {
     campsite: "",
     numberOf2ManTents: "",
     numberOf3ManTents: "",
+    tickettype: "",
+    numTickets: "",
+    ticketHolder: [],
   });
 
   useEffect(() => {
@@ -40,10 +42,12 @@ const Payment = () => {
       campsite,
       numTickets,
       numberOf2ManTents,
-      numberOf3ManTents, 
+      numberOf3ManTents,
+      tickettype,
+      ticketHolder,
+      shippingMethod,
     } = router.query;
 
-    // Update paymentData state with the retrieved data
     setPaymentData((prevData) => ({
       ...prevData,
       firstname: firstName || "",
@@ -53,8 +57,11 @@ const Payment = () => {
       zipcode: zipcode || "",
       campsite: campsite || "",
       numTickets: numTickets || "",
-      numberOf2ManTents: numberOf2ManTents || "", 
-      numberOf3ManTents: numberOf3ManTents || "", 
+      numberOf2ManTents: numberOf2ManTents || "",
+      numberOf3ManTents: numberOf3ManTents || "",
+      tickettype: tickettype || "",
+      ticketHolder: ticketHolder || [],
+      shippingMethod: shippingMethod || "",
     }));
   }, [router.query]);
 
@@ -81,25 +88,34 @@ const Payment = () => {
     e.preventDefault();
 
     try {
-      const shippingMethod = paymentData.shippingMethod === "express";
-
       // Create a separate object for the API request
       const requestData = {
         cardNumber: paymentData.cardNumber,
         nameOnCard: paymentData.nameOnCard,
         expirationDate: paymentData.expirationDate,
         cvv: paymentData.cvv,
-        shippingMethod: shippingMethod,
+        shippingMethod: paymentData.shippingMethod,
         firstname: paymentData.firstname,
         lastname: paymentData.lastname,
         email: paymentData.email,
         address: paymentData.address,
         zipcode: paymentData.zipcode,
         campsite: paymentData.campsite,
-        numberOf2ManTents: paymentData.numberOf2ManTents,
+        numberOf2ManTents: parseInt(paymentData.numberOf2ManTents), // Parse string to integer
+        numberOf3ManTents: parseInt(paymentData.numberOf3ManTents),
+        tickettype: paymentData.tickettype,
+        numTickets: Number(paymentData.numTickets), // Convert to number
+        ticketHolder: Array.isArray(paymentData.ticketHolder)
+          ? paymentData.ticketHolder.map((ticketHolder) => ({
+              firstName: ticketHolder.firstName,
+              lastName: ticketHolder.lastName,
+            }))
+          : [], // Empty array as fallback if not an array
       };
+      console.log("requestData:", requestData);
 
       // Insert the payment data into Supabase
+      console.log("Request data:", requestData);
       const { data, error } = await supabase
         .from("customers")
         .insert(requestData);
@@ -117,6 +133,8 @@ const Payment = () => {
           },
           body: JSON.stringify(requestData), // Use the requestData object here
         });
+        const responseData = await response.json(); // Parse the response data
+        console.log("API response:", responseData);
 
         if (response.ok) {
           // Redirect to thank you page
@@ -128,14 +146,21 @@ const Payment = () => {
     } catch (error) {
       console.log("Error inserting data: ", error.message);
     }
+
+    const { data: tableInfo, error } = await supabase
+      .from("customers")
+      .select("*")
+      .limit(1);
+
+    console.log(tableInfo);
   };
 
   return (
     <>
       <Head></Head>
       <div>
-      <Timer seconds={2000} />
-      <h1 className={styles.paymentHeading}>Payment Details</h1>
+        <Timer seconds={2000} />
+        <h1 className={styles.paymentHeading}>Payment Details</h1>
         <form onSubmit={handleSubmit} className={styles.paymentForm}>
           {/* hidden fields for URL data */}
           <input
@@ -216,7 +241,7 @@ const Payment = () => {
               value={paymentData.nameOnCard}
               onChange={handleChange}
               required
-              className={`${styles.inputField} ${styles.centeredInput}`} 
+              className={`${styles.inputField} ${styles.centeredInput}`}
             />
           </div>
           <div className={styles.formGroup}>
@@ -255,11 +280,10 @@ const Payment = () => {
               className={styles.inputField}
             >
               <option value="">Select shipping method</option>
-              <option value="standard">Standard Shipping</option>
-              <option value="express">Express Shipping</option>
+              <option value="Standard Shipping">Standard Shipping</option>
+              <option value="Express Shipping">Express Shipping</option>
             </select>
           </div>
-     
 
           <button type="submit" className={styles.btn}>
             Pay Now

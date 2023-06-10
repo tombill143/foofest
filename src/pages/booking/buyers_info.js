@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import styles from "../../styles/Booking.module.css";
 import Link from "next/link";
 import Head from "next/head";
@@ -27,14 +27,21 @@ const BuyersInfo = () => {
     e.preventDefault();
 
     if (isFormValid) {
-      const query = {
-        buyerInfo,
-        ticketHolderInfo,
-      };
+      const queryParams = new URLSearchParams();
+      queryParams.append("buyerInfo", JSON.stringify(buyerInfo));
+      queryParams.append("ticketHolderInfo", JSON.stringify(ticketHolderInfo));
+
+      const { ticketType, numTickets, campsite, numTents, numTents3 } =
+        router.query;
+      queryParams.append("ticketType", ticketType);
+      queryParams.append("numTickets", numTickets);
+      queryParams.append("campsite", campsite);
+      queryParams.append("numTents", numTents);
+      queryParams.append("numTents3", numTents3);
 
       router.push({
         pathname: "/booking/payment",
-        query,
+        search: queryParams.toString(),
       });
     }
   };
