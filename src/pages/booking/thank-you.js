@@ -5,10 +5,9 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { createClient } from "@supabase/supabase-js";
 
-
 const supabase = createClient(
- "https://ajpnubqenhfdlqfvcruv.supabase.co",
- "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFqcG51YnFlbmhmZGxxZnZjcnV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODU1MjExNDEsImV4cCI6MjAwMTA5NzE0MX0.x01cvbcNdxvDlmDEWUOD2s5G1Opvzltog68pGAwqtVE"
+  "https://ajpnubqenhfdlqfvcruv.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFqcG51YnFlbmhmZGxxZnZjcnV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODU1MjExNDEsImV4cCI6MjAwMTA5NzE0MX0.x01cvbcNdxvDlmDEWUOD2s5G1Opvzltog68pGAwqtVE"
 );
 
 const ThankYouPage = () => {
@@ -26,7 +25,6 @@ const ThankYouPage = () => {
     setPaymentData(data);
     console.log("Payment Data:", data);
 
-   
     supabase
       .from("payments")
       .insert([data])
@@ -36,8 +34,6 @@ const ThankYouPage = () => {
       .catch((error) => {
         console.error("Error inserting data:", error);
       });
-
-
   }, []);
 
   return (
@@ -50,11 +46,14 @@ const ThankYouPage = () => {
         <h1 className={styles.h1thankyou}>Thank You</h1>
         <img className={styles.hornsimage} src="/horns.png" alt="horns" />
         <div className={styles.paymentSummary}>
-          <p>Card Number: {paymentData.cardNumber}</p>
-          <p>Name on Card: {paymentData.nameOnCard}</p>
-          <p>Expiration Date: {paymentData.expirationDate}</p>
-          <p>CVV: {paymentData.cvv}</p>
-          <p>Shipping Method: {paymentData.shippingMethod}</p>
+          <p>
+            You will recieve an email confirming your ticket booking
+            {paymentData.cardNumber}
+          </p>
+          <p>{paymentData.nameOnCard}</p>
+          <p>{paymentData.expirationDate}</p>
+          <p>{paymentData.cvv}</p>
+          <p>{paymentData.shippingMethod}</p>
         </div>
         <Link href="/">
           <div className={styles.backToHomePageButton}>Back To Home Page</div>
