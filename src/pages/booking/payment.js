@@ -34,8 +34,8 @@ const Payment = () => {
 
   useEffect(() => {
     const {
-      firstName,
-      lastName,
+      firstname,
+      lastname,
       email,
       address,
       zipcode,
@@ -47,11 +47,13 @@ const Payment = () => {
       ticketHolder,
       shippingMethod,
     } = router.query;
+    console.log("firstname:", firstname);
+    console.log("lastname:", lastname);
 
     setPaymentData((prevData) => ({
       ...prevData,
-      firstname: firstName || "",
-      lastname: lastName || "",
+      firstname: firstname || "",
+      lastname: lastname || "",
       email: email || "",
       address: address || "",
       zipcode: zipcode || "",
@@ -76,6 +78,33 @@ const Payment = () => {
         ...paymentData,
         numberOf3ManTents: e.target.value,
       });
+    } else if (e.target.name.startsWith("ticketHolder")) {
+      const { name, value } = e.target;
+      const index = parseInt(
+        name.substring(name.indexOf("[") + 1, name.indexOf("]"))
+      );
+      const field = name.substring(
+        name.lastIndexOf("[") + 1,
+        name.lastIndexOf("]")
+      );
+
+      setPaymentData((prevState) => {
+        const updatedTicketHolders = [...prevState.ticketHolder];
+        updatedTicketHolders[index] = {
+          ...updatedTicketHolders[index],
+          [field]: value,
+        };
+
+        return {
+          ...prevState,
+          ticketHolder: updatedTicketHolders,
+        };
+      });
+    } else if (e.target.name === "firstname" || e.target.name === "lastname") {
+      setPaymentData((prevState) => ({
+        ...prevState,
+        [e.target.name]: e.target.value,
+      }));
     } else {
       setPaymentData({
         ...paymentData,
@@ -168,30 +197,35 @@ const Payment = () => {
             id="firstName"
             name="firstname"
             value={paymentData.firstname}
+            onChange={handleChange}
           />
           <input
             type="hidden"
             id="lastName"
             name="lastname"
             value={paymentData.lastname}
+            onChange={handleChange}
           />
           <input
             type="hidden"
             id="email"
             name="email"
             value={paymentData.email}
+            onChange={handleChange}
           />
           <input
             type="hidden"
             id="address"
             name="address"
             value={paymentData.address}
+            onChange={handleChange}
           />
           <input
             type="hidden"
             id="zipcode"
             name="zipcode"
             value={paymentData.zipcode}
+            onChange={handleChange}
           />
           <input
             type="hidden"

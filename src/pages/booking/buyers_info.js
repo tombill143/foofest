@@ -9,8 +9,8 @@ const BuyersInfo = () => {
   const router = useRouter();
 
   const [buyerInfo, setBuyerInfo] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     email: "",
     address: "",
     zipcode: "",
@@ -39,6 +39,13 @@ const BuyersInfo = () => {
       queryParams.append("numTents", numTents);
       queryParams.append("numTents3", numTents3);
 
+      // Add the additional fields from buyerInfo to the queryParams
+      queryParams.append("firstname", buyerInfo.firstname);
+      queryParams.append("lastname", buyerInfo.lastname);
+      queryParams.append("email", buyerInfo.email);
+      queryParams.append("address", buyerInfo.address);
+      queryParams.append("zipcode", buyerInfo.zipcode);
+
       router.push({
         pathname: "/booking/payment",
         search: queryParams.toString(),
@@ -50,7 +57,14 @@ const BuyersInfo = () => {
     const updatedTicketHolders = [...ticketHolderInfo];
     updatedTicketHolders[index] = {
       ...updatedTicketHolders[index],
-      [e.target.name]: e.target.value,
+      ticketHolderFirst:
+        e.target.name === "ticketHolderFirst"
+          ? e.target.value
+          : updatedTicketHolders[index].ticketHolderFirst,
+      ticketHolderLast:
+        e.target.name === "ticketHolderLast"
+          ? e.target.value
+          : updatedTicketHolders[index].ticketHolderLast,
     };
     setTicketHolderInfo(updatedTicketHolders);
 
@@ -58,22 +72,22 @@ const BuyersInfo = () => {
   };
 
   const validateForm = () => {
-    const { firstName, lastName, email, address, zipcode } = buyerInfo;
+    const { firstname, lastname, email, address, zipcode } = buyerInfo;
 
     let isTicketHoldersValid = true;
     if (ticketHolderInfo.length > 0) {
       isTicketHoldersValid = ticketHolderInfo.every(
         (ticketHolder) =>
-          ticketHolder.firstName && // Check if firstName property exists
-          ticketHolder.lastName && // Check if lastName property exists
-          ticketHolder.firstName.trim() !== "" &&
-          ticketHolder.lastName.trim() !== ""
+          ticketHolder.ticketHolderFirst &&
+          ticketHolder.ticketHolderLast &&
+          ticketHolder.ticketHolderFirst.trim() !== "" &&
+          ticketHolder.ticketHolderLast.trim() !== ""
       );
     }
 
     setIsFormValid(
-      firstName.trim() !== "" &&
-        lastName.trim() !== "" &&
+      firstname.trim() !== "" &&
+        lastname.trim() !== "" &&
         email.trim() !== "" &&
         address.trim() !== "" &&
         zipcode.trim() !== "" &&
@@ -128,8 +142,8 @@ const BuyersInfo = () => {
                     First Name:
                     <input
                       type="text"
-                      name="firstName"
-                      value={buyerInfo.firstName}
+                      name="firstname"
+                      value={buyerInfo.firstname}
                       onChange={handleChange}
                       className={styles.formInput}
                       onBlur={validateForm}
@@ -139,8 +153,8 @@ const BuyersInfo = () => {
                     Last Name:
                     <input
                       type="text"
-                      name="lastName"
-                      value={buyerInfo.lastName}
+                      name="lastname"
+                      value={buyerInfo.lastname}
                       onChange={handleChange}
                       className={styles.formInput}
                       onBlur={validateForm}
@@ -187,8 +201,8 @@ const BuyersInfo = () => {
                         First Name:
                         <input
                           type="text"
-                          name="firstName"
-                          value={ticketHolder.firstName || ""}
+                          name="ticketHolderFirst"
+                          value={ticketHolder.ticketHolderFirst || ""}
                           onChange={(e) => handleTicketHolderChange(index, e)}
                           className={styles.formInput}
                           onBlur={validateForm}
@@ -198,8 +212,8 @@ const BuyersInfo = () => {
                         Last Name:
                         <input
                           type="text"
-                          name="lastName"
-                          value={ticketHolder.lastName || ""}
+                          name="ticketHolderLast"
+                          value={ticketHolder.ticketHolderLast || ""}
                           onChange={(e) => handleTicketHolderChange(index, e)}
                           className={styles.formInput}
                           onBlur={validateForm}
