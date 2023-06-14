@@ -67,7 +67,7 @@ const BuyersInfo = () => {
           : updatedTicketHolders[index].ticketHolderLast,
     };
     setTicketHolderInfo(updatedTicketHolders);
-
+    console.log("Updated ticketHolder:", updatedTicketHolders);
     validateForm(); // Trigger form validation when ticket holder fields change
   };
 

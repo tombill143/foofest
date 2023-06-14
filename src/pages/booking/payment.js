@@ -62,7 +62,7 @@ const Payment = () => {
       numberOf2ManTents: numberOf2ManTents || "",
       numberOf3ManTents: numberOf3ManTents || "",
       tickettype: tickettype || "",
-      ticketHolder: ticketHolder || [],
+      ticketHolder: ticketHolder || "",
       shippingMethod: shippingMethod || "",
     }));
   }, [router.query]);
@@ -134,12 +134,12 @@ const Payment = () => {
         numberOf3ManTents: parseInt(paymentData.numberOf3ManTents),
         tickettype: paymentData.tickettype,
         numTickets: Number(paymentData.numTickets), // Convert to number
-        ticketHolder: Array.isArray(paymentData.ticketHolder)
-          ? paymentData.ticketHolder.map((ticketHolder) => ({
-              firstName: ticketHolder.firstName,
-              lastName: ticketHolder.lastName,
-            }))
-          : [], // Empty array as fallback if not an array
+        ticketHolder: [
+          {
+            ticketHolderFirst: paymentData.ticketHolder || "",
+            ticketHolderLast: paymentData.ticketHolder || "",
+          },
+        ],
       };
       console.log("requestData:", requestData);
 
