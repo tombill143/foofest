@@ -29,7 +29,7 @@ const Payment = () => {
     numberOf3ManTents: "",
     tickettype: "",
     numTickets: "",
-    ticketHolder: [],
+    ticketHolder: "",
   });
 
   useEffect(() => {
@@ -49,6 +49,15 @@ const Payment = () => {
     } = router.query;
     console.log("firstname:", firstname);
     console.log("lastname:", lastname);
+
+    let parsedTicketHolder = [];
+    if (typeof ticketHolder === "string") {
+      try {
+        parsedTicketHolder = JSON.parse(ticketHolder);
+      } catch (error) {
+        console.log("Error parsing ticketHolder:", error);
+      }
+    }
 
     setPaymentData((prevData) => ({
       ...prevData,
@@ -78,27 +87,10 @@ const Payment = () => {
         ...paymentData,
         numberOf3ManTents: e.target.value,
       });
-    } else if (e.target.name.startsWith("ticketHolder")) {
-      const { name, value } = e.target;
-      const index = parseInt(
-        name.substring(name.indexOf("[") + 1, name.indexOf("]"))
-      );
-      const field = name.substring(
-        name.lastIndexOf("[") + 1,
-        name.lastIndexOf("]")
-      );
-
-      setPaymentData((prevState) => {
-        const updatedTicketHolders = [...prevState.ticketHolder];
-        updatedTicketHolders[index] = {
-          ...updatedTicketHolders[index],
-          [field]: value,
-        };
-
-        return {
-          ...prevState,
-          ticketHolder: updatedTicketHolders,
-        };
+    } else if (e.target.name === "ticketHolder") {
+      setPaymentData({
+        ...paymentData,
+        ticketHolder: e.target.value,
       });
     } else if (e.target.name === "firstname" || e.target.name === "lastname") {
       setPaymentData((prevState) => ({
@@ -130,16 +122,11 @@ const Payment = () => {
         address: paymentData.address,
         zipcode: paymentData.zipcode,
         campsite: paymentData.campsite,
+        ticketHolder: paymentData.ticketHolder || "",
         numberOf2ManTents: parseInt(paymentData.numberOf2ManTents), // Parse string to integer
         numberOf3ManTents: parseInt(paymentData.numberOf3ManTents),
         tickettype: paymentData.tickettype,
         numTickets: Number(paymentData.numTickets), // Convert to number
-        ticketHolder: [
-          {
-            ticketHolderFirst: paymentData.ticketHolder || "",
-            ticketHolderLast: paymentData.ticketHolder || "",
-          },
-        ],
       };
       console.log("requestData:", requestData);
 
@@ -317,6 +304,18 @@ const Payment = () => {
               <option value="Standard Shipping">Standard Shipping</option>
               <option value="Express Shipping">Express Shipping</option>
             </select>
+          </div>
+
+          <div className={styles.formGroup} style={{ display: "none" }}>
+            <label htmlFor="ticketHolder">Ticket Holder Name</label>
+            <input
+              type="text"
+              id="ticketHolder"
+              name="ticketHolder"
+              value={paymentData.ticketHolder}
+              onChange={handleChange}
+              className={styles.inputField}
+            />
           </div>
 
           <button type="submit" className={styles.btn}>

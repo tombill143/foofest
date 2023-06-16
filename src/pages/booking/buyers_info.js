@@ -14,6 +14,7 @@ const BuyersInfo = () => {
     email: "",
     address: "",
     zipcode: "",
+    ticketHolder: "",
   });
 
   const [ticketHolderInfo, setTicketHolderInfo] = useState([]);
@@ -29,7 +30,12 @@ const BuyersInfo = () => {
     if (isFormValid) {
       const queryParams = new URLSearchParams();
       queryParams.append("buyerInfo", JSON.stringify(buyerInfo));
-      queryParams.append("ticketHolderInfo", JSON.stringify(ticketHolderInfo));
+
+      // Extract the ticket holder names from ticketHolderInfo
+      const ticketHolders = ticketHolderInfo
+        .map((ticketHolder) => ticketHolder.ticketHolder)
+        .join(", ");
+      queryParams.append("ticketHolder", ticketHolders);
 
       const { ticketType, numTickets, campsite, numTents, numTents3 } =
         router.query;
@@ -53,46 +59,19 @@ const BuyersInfo = () => {
     }
   };
 
-  const handleTicketHolderChange = (index, e) => {
-    const updatedTicketHolders = [...ticketHolderInfo];
-    updatedTicketHolders[index] = {
-      ...updatedTicketHolders[index],
-      ticketHolderFirst:
-        e.target.name === "ticketHolderFirst"
-          ? e.target.value
-          : updatedTicketHolders[index].ticketHolderFirst,
-      ticketHolderLast:
-        e.target.name === "ticketHolderLast"
-          ? e.target.value
-          : updatedTicketHolders[index].ticketHolderLast,
-    };
-    setTicketHolderInfo(updatedTicketHolders);
-    console.log("Updated ticketHolder:", updatedTicketHolders);
-    validateForm(); // Trigger form validation when ticket holder fields change
-  };
-
   const validateForm = () => {
-    const { firstname, lastname, email, address, zipcode } = buyerInfo;
+    const { firstname, lastname, email, address, zipcode, ticketHolder } =
+      buyerInfo;
 
-    let isTicketHoldersValid = true;
-    if (ticketHolderInfo.length > 0) {
-      isTicketHoldersValid = ticketHolderInfo.every(
-        (ticketHolder) =>
-          ticketHolder.ticketHolderFirst &&
-          ticketHolder.ticketHolderLast &&
-          ticketHolder.ticketHolderFirst.trim() !== "" &&
-          ticketHolder.ticketHolderLast.trim() !== ""
-      );
-    }
-
-    setIsFormValid(
+    const isFormValid =
       firstname.trim() !== "" &&
-        lastname.trim() !== "" &&
-        email.trim() !== "" &&
-        address.trim() !== "" &&
-        zipcode.trim() !== "" &&
-        isTicketHoldersValid
-    );
+      lastname.trim() !== "" &&
+      email.trim() !== "" &&
+      address.trim() !== "" &&
+      zipcode.trim() !== "" &&
+      ticketHolder.trim() !== "";
+
+    setIsFormValid(isFormValid);
   };
 
   useEffect(() => {
@@ -193,34 +172,20 @@ const BuyersInfo = () => {
                       onBlur={validateForm}
                     />
                   </label>
-
-                  {ticketHolderInfo.map((ticketHolder, index) => (
-                    <div key={index} className={styles.buyerInfoContainer}>
-                      <h3>Ticket Holder {index + 2}</h3>
-                      <label>
-                        First Name:
-                        <input
-                          type="text"
-                          name="ticketHolderFirst"
-                          value={ticketHolder.ticketHolderFirst || ""}
-                          onChange={(e) => handleTicketHolderChange(index, e)}
-                          className={styles.formInput}
-                          onBlur={validateForm}
-                        />
-                      </label>
-                      <label>
-                        Last Name:
-                        <input
-                          type="text"
-                          name="ticketHolderLast"
-                          value={ticketHolder.ticketHolderLast || ""}
-                          onChange={(e) => handleTicketHolderChange(index, e)}
-                          className={styles.formInput}
-                          onBlur={validateForm}
-                        />
-                      </label>
-                    </div>
-                  ))}
+                  <div className={styles.buyerInfoContainer}>
+                    <h3>Ticket Holder</h3>
+                    <label>
+                      Name of ticket Holder:
+                      <input
+                        type="text"
+                        name="ticketHolder"
+                        value={buyerInfo.ticketHolder}
+                        onChange={handleChange}
+                        className={styles.formInput}
+                        onBlur={validateForm}
+                      />
+                    </label>
+                  </div>
 
                   <button
                     type="submit"
