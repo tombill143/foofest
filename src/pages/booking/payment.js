@@ -29,7 +29,7 @@ const Payment = () => {
     numberOf3ManTents: "",
     tickettype: "",
     numTickets: "",
-    ticketHolder: "",
+    ticketHolder: [],
   });
 
   useEffect(() => {
@@ -43,22 +43,12 @@ const Payment = () => {
       numTickets,
       numberOf2ManTents,
       numberOf3ManTents,
-      tickettype,
       ticketHolder,
+      tickettype,
       shippingMethod,
     } = router.query;
-    console.log("firstname:", firstname);
-    console.log("lastname:", lastname);
 
-    let parsedTicketHolder = [];
-    if (typeof ticketHolder === "string") {
-      try {
-        parsedTicketHolder = JSON.parse(ticketHolder);
-      } catch (error) {
-        console.log("Error parsing ticketHolder:", error);
-      }
-    }
-
+    console.log("here is the router log:", router.query);
     setPaymentData((prevData) => ({
       ...prevData,
       firstname: firstname || "",
@@ -71,7 +61,7 @@ const Payment = () => {
       numberOf2ManTents: numberOf2ManTents || "",
       numberOf3ManTents: numberOf3ManTents || "",
       tickettype: tickettype || "",
-      ticketHolder: ticketHolder || "",
+      ticketHolder: ticketHolder || [],
       shippingMethod: shippingMethod || "",
     }));
   }, [router.query]);
@@ -88,15 +78,35 @@ const Payment = () => {
         numberOf3ManTents: e.target.value,
       });
     } else if (e.target.name === "ticketHolder") {
-      setPaymentData({
-        ...paymentData,
-        ticketHolder: e.target.value,
-      });
+      const updatedTicketHolders = paymentData.ticketHolder.map(
+        (holder, index) => {
+          if (index === Number(e.target.id)) {
+            return {
+              ...holder,
+              ticketHolder: e.target.value,
+            };
+          }
+          return holder;
+        }
+      );
+
+      setPaymentData((prevState) => ({
+        ...prevState,
+        ticketHolder: updatedTicketHolders,
+      }));
     } else if (e.target.name === "firstname" || e.target.name === "lastname") {
       setPaymentData((prevState) => ({
         ...prevState,
         [e.target.name]: e.target.value,
       }));
+    } else if (e.target.name === "cardNumber") {
+      const intValue = parseInt(e.target.value);
+      if (!isNaN(intValue)) {
+        setPaymentData((prevState) => ({
+          ...prevState,
+          cardNumber: intValue.toString(), // Convert back to string after parsing to integer
+        }));
+      }
     } else {
       setPaymentData({
         ...paymentData,
@@ -109,7 +119,6 @@ const Payment = () => {
     e.preventDefault();
 
     try {
-      // Create a separate object for the API request
       const requestData = {
         cardNumber: paymentData.cardNumber,
         nameOnCard: paymentData.nameOnCard,
@@ -122,13 +131,12 @@ const Payment = () => {
         address: paymentData.address,
         zipcode: paymentData.zipcode,
         campsite: paymentData.campsite,
-        ticketHolder: paymentData.ticketHolder || "",
-        numberOf2ManTents: parseInt(paymentData.numberOf2ManTents), // Parse string to integer
+        ticketHolder: paymentData.ticketHolder,
+        numberOf2ManTents: parseInt(paymentData.numberOf2ManTents),
         numberOf3ManTents: parseInt(paymentData.numberOf3ManTents),
         tickettype: paymentData.tickettype,
-        numTickets: Number(paymentData.numTickets), // Convert to number
+        numTickets: Number(paymentData.numTickets),
       };
-      console.log("requestData:", requestData);
 
       // Insert the payment data into Supabase
       console.log("Request data:", requestData);
@@ -223,14 +231,14 @@ const Payment = () => {
           <input
             type="hidden"
             id="numtickets"
-            name="numtickets"
-            value={paymentData.numberOf2ManTents}
+            name="numTickets"
+            value={paymentData.numTickets}
           />
           <input
             type="hidden"
             id="numTents"
             name="numberOf2ManTents"
-            value={paymentData.numberOf3ManTents}
+            value={paymentData.numberOf2ManTents}
           />
 
           <input
@@ -238,6 +246,14 @@ const Payment = () => {
             id="numTents3"
             name="numberOf3ManTents"
             value={paymentData.numberOf3ManTents}
+          />
+
+          <input
+            type="hidden"
+            id="ticketHolder"
+            name="ticketHolder"
+            value={paymentData.ticketHolder}
+            onChange={handleChange}
           />
           {/* Existing payment form fields */}
           <div className={styles.formGroup}>
@@ -304,18 +320,6 @@ const Payment = () => {
               <option value="Standard Shipping">Standard Shipping</option>
               <option value="Express Shipping">Express Shipping</option>
             </select>
-          </div>
-
-          <div className={styles.formGroup} style={{ display: "none" }}>
-            <label htmlFor="ticketHolder">Ticket Holder Name</label>
-            <input
-              type="text"
-              id="ticketHolder"
-              name="ticketHolder"
-              value={paymentData.ticketHolder}
-              onChange={handleChange}
-              className={styles.inputField}
-            />
           </div>
 
           <button type="submit" className={styles.btn}>
