@@ -4,7 +4,6 @@
   text-align: center;
 }
 .text {
- 
   color: var(--white);
   text-align: justify;
   margin: 2rem 7rem 2rem 7rem;
@@ -40,7 +39,6 @@
   justify-content: center;
 }
 
-
 .home_hero h1 {
   font-size: 8vw;
   margin: 1vw;
@@ -66,7 +64,7 @@
   outline: none;
 }
 
-.home_program{
+.home_program {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,19 +114,21 @@ nav .btn {
 }
 
 .button:hover .icon {
-  fill: var(--grey); 
+  fill: var(--grey);
 }
 
 .icon {
-  fill: var(--white); 
-  width: 24px; 
-  height: 24px; 
-  
+  fill: var(--white);
+  width: 24px;
+  height: 24px;
 }
 
 .icon:hover {
   fill: var(--grey);
-  width: 24px; 
-  height: 24px; 
+  width: 24px;
+  height: 24px;
+}
 
+.buttonClicked {
+  transform: translateY(2px);
 }
