@@ -51,6 +51,13 @@ const BuyersInfo = () => {
         search: queryParams.toString(),
       });
     }
+
+    // Add a check for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(buyerInfo.email)) {
+      alert("Invalid email address");
+      return;
+    }
   };
 
   const handleTicketHolderChange = (index, e) => {
@@ -79,6 +86,8 @@ const BuyersInfo = () => {
       firstName.trim() !== "" &&
         lastName.trim() !== "" &&
         email.trim() !== "" &&
+        email.includes("@") &&
+        email.includes(".") &&
         address.trim() !== "" &&
         zipcode.trim() !== "" &&
         isTicketHoldersValid

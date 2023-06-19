@@ -107,6 +107,12 @@ const Payment = () => {
           cardNumber: intValue.toString(), // Convert back to string after parsing to integer
         }));
       }
+    } else if (e.target.name === "nameOnCard") {
+      const updatedNameOnCard = e.target.value.replace(/[0-9]/g, ""); // Remove any numbers from the input
+      setPaymentData((prevState) => ({
+        ...prevState,
+        nameOnCard: updatedNameOnCard,
+      }));
     } else {
       setPaymentData({
         ...paymentData,
