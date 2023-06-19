@@ -43,7 +43,7 @@ const Payment = () => {
       numTickets,
       numberOf2ManTents,
       numberOf3ManTents,
-      ticketHolder,
+      ticketHolderInfo,
       tickettype,
       shippingMethod,
     } = router.query;
@@ -61,7 +61,7 @@ const Payment = () => {
       numberOf2ManTents: numberOf2ManTents || "",
       numberOf3ManTents: numberOf3ManTents || "",
       tickettype: tickettype || "",
-      ticketHolder: ticketHolder || [],
+      ticketHolder: ticketHolderInfo ? JSON.parse(ticketHolderInfo) : [],
       shippingMethod: shippingMethod || "",
     }));
   }, [router.query]);
@@ -190,6 +190,18 @@ const Payment = () => {
       <Head></Head>
       <div>
         <Timer seconds={2000} />
+        <div className={styles.summarybox}>
+          <h2>Buyer's Information:</h2>
+          <p>First Name: {paymentData.firstname}</p>
+          <p>Last Name: {paymentData.lastname}</p>
+
+          <h2>Ticket Holders:</h2>
+          {paymentData.ticketHolder.map((ticketHolder, index) => (
+            <p key={index}>
+              Ticket Holder {index + 1}: {ticketHolder.ticketHolder}
+            </p>
+          ))}
+        </div>
         <h1 className={styles.paymentHeading}>Payment Details</h1>
         <form onSubmit={handleSubmit} className={styles.paymentForm}>
           {/* hidden fields for URL data */}
@@ -258,7 +270,7 @@ const Payment = () => {
             type="hidden"
             id="ticketHolder"
             name="ticketHolder"
-            value={paymentData.ticketHolder}
+            value={JSON.stringify(paymentData.ticketHolder)}
             onChange={handleChange}
           />
           {/* Existing payment form fields */}

@@ -46,6 +46,16 @@ const BuyersInfo = () => {
       queryParams.append("address", buyerInfo.address);
       queryParams.append("zipcode", buyerInfo.zipcode);
 
+      // Add the buyer and ticket holder names to the queryParams
+      queryParams.append("buyerFirstName", buyerInfo.firstName);
+      queryParams.append("buyerLastName", buyerInfo.lastName);
+      ticketHolderInfo.forEach((ticketHolder, index) => {
+        queryParams.append(
+          `ticketHolder${index + 1}`,
+          ticketHolder.ticketHolder
+        );
+      });
+
       router.push({
         pathname: "/booking/payment",
         search: queryParams.toString(),

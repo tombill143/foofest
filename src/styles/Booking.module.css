@@ -317,3 +317,12 @@
   width: 100%; /* Adjust the width as needed */
   max-width: 400px; /* Adjust the max-width as needed */
 }
+
+.summarybox {
+  background-color: gray;
+  margin: 1em;
+  padding: 1em;
+  width: 25%;
+  border-radius: 12px;
+  border: 1px solid #aaaaaa;
+}
