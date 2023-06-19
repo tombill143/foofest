@@ -29,7 +29,12 @@ const Payment = () => {
     numberOf3ManTents: "",
     tickettype: "",
     numTickets: "",
-    ticketHolder: [],
+    ticketHolder: [
+      {
+        ticketHolder: "",
+        ticketCost: 0,
+      },
+    ],
   });
 
   useEffect(() => {
@@ -48,6 +53,18 @@ const Payment = () => {
       shippingMethod,
     } = router.query;
 
+    const parsedTicketHolderInfo = ticketHolderInfo
+      ? JSON.parse(ticketHolderInfo)
+      : [];
+
+    // Calculate the total ticket cost
+    const totalTicketCost = parsedTicketHolderInfo.reduce(
+      (total, ticketHolder) => {
+        return total + ticketHolder.ticketCost;
+      },
+      0
+    );
+
     console.log("here is the router log:", router.query);
     setPaymentData((prevData) => ({
       ...prevData,
@@ -61,29 +78,33 @@ const Payment = () => {
       numberOf2ManTents: numberOf2ManTents || "",
       numberOf3ManTents: numberOf3ManTents || "",
       tickettype: tickettype || "",
-      ticketHolder: ticketHolderInfo ? JSON.parse(ticketHolderInfo) : [],
+      ticketHolder: parsedTicketHolderInfo,
       shippingMethod: shippingMethod || "",
     }));
   }, [router.query]);
 
   const handleChange = (e) => {
-    if (e.target.name === "numberOf2ManTents") {
-      setPaymentData({
-        ...paymentData,
-        numberOf2ManTents: e.target.value,
-      });
-    } else if (e.target.name === "numberOf3ManTents") {
-      setPaymentData({
-        ...paymentData,
-        numberOf3ManTents: e.target.value,
-      });
-    } else if (e.target.name === "ticketHolder") {
+    const { name, value } = e.target;
+
+    if (name === "numberOf2ManTents") {
+      setPaymentData((prevState) => ({
+        ...prevState,
+        numberOf2ManTents: value,
+      }));
+    } else if (name === "numberOf3ManTents") {
+      setPaymentData((prevState) => ({
+        ...prevState,
+        numberOf3ManTents: value,
+      }));
+    } else if (name === "ticketHolder") {
       const updatedTicketHolders = paymentData.ticketHolder.map(
         (holder, index) => {
           if (index === Number(e.target.id)) {
+            const ticketCost = calculateTicketCost(value); // Calculate the ticket cost
             return {
               ...holder,
-              ticketHolder: e.target.value,
+              ticketHolder: value,
+              ticketCost: ticketCost, // Assign the ticket cost
             };
           }
           return holder;
@@ -94,30 +115,30 @@ const Payment = () => {
         ...prevState,
         ticketHolder: updatedTicketHolders,
       }));
-    } else if (e.target.name === "firstname" || e.target.name === "lastname") {
+    } else if (name === "firstname" || name === "lastname") {
       setPaymentData((prevState) => ({
         ...prevState,
-        [e.target.name]: e.target.value,
+        [name]: value,
       }));
-    } else if (e.target.name === "cardNumber") {
-      const intValue = parseInt(e.target.value);
+    } else if (name === "cardNumber") {
+      const intValue = parseInt(value);
       if (!isNaN(intValue)) {
         setPaymentData((prevState) => ({
           ...prevState,
           cardNumber: intValue.toString(), // Convert back to string after parsing to integer
         }));
       }
-    } else if (e.target.name === "nameOnCard") {
-      const updatedNameOnCard = e.target.value.replace(/[0-9]/g, ""); // Remove any numbers from the input
+    } else if (name === "nameOnCard") {
+      const updatedNameOnCard = value.replace(/[0-9]/g, ""); // Remove any numbers from the input
       setPaymentData((prevState) => ({
         ...prevState,
         nameOnCard: updatedNameOnCard,
       }));
     } else {
-      setPaymentData({
-        ...paymentData,
-        [e.target.name]: e.target.value,
-      });
+      setPaymentData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
     }
   };
 
@@ -198,7 +219,8 @@ const Payment = () => {
           <h2>Ticket Holders:</h2>
           {paymentData.ticketHolder.map((ticketHolder, index) => (
             <p key={index}>
-              Ticket Holder {index + 1}: {ticketHolder.ticketHolder}
+              Ticket Holder {index + 1}: {ticketHolder.ticketHolder} - Price:{" "}
+              {ticketHolder.ticketCost}
             </p>
           ))}
         </div>
